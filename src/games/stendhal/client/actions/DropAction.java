@@ -28,10 +28,8 @@ class DropAction implements SlashAction {
 	/**
 	 * Execute a chat command.
 	 * 
-	 * @param params
-	 *            The formal parameters.
-	 * @param remainder
-	 *            Line content after parameters.
+	 * @param params      The formal parameters.
+	 * @param remainder   Line content after parameters.
 	 * 
 	 * @return <code>true</code> if command was handled.
 	 */
@@ -39,20 +37,21 @@ class DropAction implements SlashAction {
 	public boolean execute(final String[] params, final String remainder) {
 		int quantity;
 		String itemName;
+		String firstWord = params[0];
 
 		// Is there a numeric expression as first parameter?
-		if (params[0].matches("[0-9].*")) {
+		if (firstWord.matches("[0-9].*")) {
 			try {
-				quantity = Integer.parseInt(params[0]);
+				quantity = Integer.parseInt(firstWord);
 			} catch (final NumberFormatException ex) {
-				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid quantity: " + params[0]));
+				ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Invalid quantity: " + firstWord));
 				return true;
 			}
 
 			itemName = remainder;
 		} else {
 			quantity = 1;
-			itemName = (params[0] + " " + remainder).trim();
+			itemName = (firstWord + remainder).trim();
 		}
 
 		final String singularItemName = Grammar.singular(itemName);
