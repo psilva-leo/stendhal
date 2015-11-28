@@ -208,8 +208,7 @@ public abstract class RPEntity extends GuidedEntity {
 		/** List of killer names. */
 		private final LinkedList<String> list = new LinkedList<String>();
 		/**
-		 * A flag for detecting when the killer list has grown over the
-		 * maximum size.
+		 * A flag for detecting when the killer list has grown over the maximum size.
 		 */
 		private boolean more;
 		
@@ -310,18 +309,18 @@ public abstract class RPEntity extends GuidedEntity {
 		super(object);
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new CounterMap<Entity>(true);
-		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
+		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 	}
 
 	public RPEntity() {
 		super();
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new CounterMap<Entity>(true);
-		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 		ignoreCollision = false;
+		enemiesThatGiveFightXP = new WeakHashMap<RPEntity, Integer>();
 	}
 
 	/**
@@ -331,7 +330,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 *            An amount of karma to add/subtract.
 	 */
 	public void addKarma(final double karma) {
-		// No nothing
+		// Do nothing
 	}
 
 	/**
@@ -409,7 +408,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		if (given != 0) {
 			put("heal", given);
-			setHP(baseHP);
+			setHP(given);
 		}
 
 		return given;
@@ -632,11 +631,9 @@ public abstract class RPEntity extends GuidedEntity {
 		double speedEffect = 1.0;
 		if (effectiveDefenderLevel < EVEN_POINT * effectiveAttackerLevel) {
 			final double levelPart = 1.0 - effectiveDefenderLevel
-					/ (EVEN_POINT * effectiveAttackerLevel);
-			// Gets values -1 at rate = 1, 0 at rate = 5,
-			// and approaches 1 when rate approaches infinity.
-			// We can't use a much simpler function as long as we need
-			// to deal with open ended rate values.
+					                       / (EVEN_POINT * effectiveAttackerLevel);
+			// Gets values -1 at rate = 1, 0 at rate = 5, and approaches 1 when rate approaches infinity.
+			// We can't use a much simpler function as long as we need to deal with open ended rate values.
 			final double speedPart = 1 - 8 / (getAttackRate() + 3.0);
 
 			speedEffect = 1.0 - WEIGHT_EFFECT * speedPart * levelPart
@@ -670,9 +667,8 @@ public abstract class RPEntity extends GuidedEntity {
 		 *        RPEntity.usingRangedAttack() here?
 		 */
 		if (isRanged) {
-			// The attacker is attacking either using a range weapon with
-			// ammunition such as a bow and arrows, or a missile such as a
-			// spear.
+			// The attacker is attacking either using a range weapon with ammunition
+			// such as a bow and arrows, or a missile such as a spear.
 			damage = applyDistanceAttackModifiers(damage,
 					squaredDistance(defender), maxRange);
 		}
@@ -713,8 +709,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @param maxrange maximum attack range
 	 * @return The damage that will be done with the distance attack.
 	 */
-	public static int applyDistanceAttackModifiers(final int damage,
-			final double squareDistance, final double maxrange) {
+	public static int applyDistanceAttackModifiers(final int damage, final double squareDistance, final double maxrange) {
 		final double maxRangeSquared = maxrange * maxrange;
 		if (maxRangeSquared < squareDistance) {
 			return 0;
@@ -772,10 +767,10 @@ public abstract class RPEntity extends GuidedEntity {
 		setAtkInternal(atk, true);
 	}
 
-	private void setAtkInternal(final int atk, boolean notify) {
+	private void setAtkInternal(final int atk, boolean notifyAtkUpdated) {
 		this.atk = atk;
 		put("atk", atk);  // visible atk
-		if(notify) {
+		if(notifyAtkUpdated) {
 			this.updateModifiedAttributes();
 		}
 	}
@@ -811,9 +806,11 @@ public abstract class RPEntity extends GuidedEntity {
 		final int levels = newLevel - (this.atk - 10);
 
 		// In case we level up several levels at a single time.
-		for (int i = 0; i < Math.abs(levels); i++) {
+		for (int count = 0; count < Math.abs(levels); count++) {
 			setAtkInternal(this.atk + (int) Math.signum(levels) * 1, notify);
-			new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+			if (this.atk > 0) {
+				new GameEvent(getName(), "atk", Integer.toString(getAtk())).raise();
+			}
 		}
 	}
 
@@ -832,10 +829,10 @@ public abstract class RPEntity extends GuidedEntity {
 		setDefInternal(def, true);
 	}
 
-	private void setDefInternal(final int def, boolean notify) {
+	private void setDefInternal(final int def, boolean notifyDefUpdated) {
 		this.def = def;
-		put("def", def);  // visible def
-		if(notify) {
+		put("def", def);
+		if(notifyDefUpdated) {
 			this.updateModifiedAttributes();
 		}
 	}
@@ -868,12 +865,14 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// Handle level changes
 		final int newLevel = Level.getLevel(def_xp);
-		final int levels = newLevel - (this.def - 10);
+		final int levels = newLevel - (this.def-10);
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
 			setDefInternal(this.def + (int) Math.signum(levels) * 1, notify);
-			new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+			if (this.def > 0) {
+				new GameEvent(getName(), "def", Integer.toString(this.def)).raise();
+			}
 		}
 	}
 
@@ -885,7 +884,8 @@ public abstract class RPEntity extends GuidedEntity {
 	 * Increase defense XP by 1.
 	 */
 	public void incDefXP() {
-		setDefXP(def_xp + 1);
+		int newDefXP = def_xp+1;
+		setDefXP(newDefXP);
 	}
 
 
@@ -906,13 +906,13 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param ratk
 	 * 		Integer value representing new ranged attack level
-	 * @param notify
+	 * @param notifyRAtkUpdated
 	 * 		Update stat in real-time
 	 */
-	private void setRatkInternal(final int ratk, boolean notify) {
+	private void setRatkInternal(final int ratk, boolean notifyRAtkUpdated) {
 		this.ratk = ratk;
 		put("ratk", ratk);  // visible ratk
-		if(notify) {
+		if(notifyRAtkUpdated) {
 			this.updateModifiedAttributes();
 		}
 	}
@@ -929,7 +929,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 	/**
 	 * gets the capped ranged attack level which prevents players from training
-	 * ratk way beyond what is reasonable for their level.
+	 * ranged attack way beyond what is reasonable for their level.
 	 *
 	 * @return
 	 * 		The maximum value player's ranged attack level can be at current
@@ -954,10 +954,10 @@ public abstract class RPEntity extends GuidedEntity {
 	 * 
 	 * @param ratkXP
 	 * 		Integer value of the target experience
-	 * @param notify
+	 * @param notifyRAtkUpdated
 	 * 		Update ranged attack experience in real-time
 	 */
-	protected void setRatkXPInternal(final int ratkXP, boolean notify) {
+	protected void setRatkXPInternal(final int ratkXP, boolean notifyRAtkUpdated) {
 		this.ratk_xp = ratkXP;
 		put("ratk_xp", ratk_xp);
 
@@ -967,7 +967,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		// In case we level up several levels at a single time.
 		for (int i = 0; i < Math.abs(levels); i++) {
-			setRatkInternal(this.ratk + (int) Math.signum(levels) * 1, notify);
+			setRatkInternal(this.ratk + (int) Math.signum(levels) * 1, notifyRAtkUpdated);
 			new GameEvent(getName(), "ratk", Integer.toString(this.ratk)).raise();
 		}
 	}
@@ -1006,15 +1006,15 @@ public abstract class RPEntity extends GuidedEntity {
 	/**
 	 * Set the base HP.
 	 *
-	 * @param newhp
+	 * @param updatedHP
 	 *            The base HP to set.
 	 */
-	public void setBaseHP(final int newhp) {
-		this.base_hp = newhp;
+	public void setBaseHP(final int updatedHP) {
+		this.base_hp = updatedHP;
 		try {
-			put("base_hp", newhp);
+			put("base_hp", updatedHP);
 		} catch (IllegalArgumentException e) {
-			logger.error("Failed to set base HP to " + newhp + ". Entity was: " + this, e);
+			logger.error("Failed to set base HP to " + updatedHP + ". Entity was: " + this, e);
 		}
 		this.updateModifiedAttributes();
 	}
@@ -1040,14 +1040,14 @@ public abstract class RPEntity extends GuidedEntity {
 		setHpInternal(hp, true);
 	}
 
-	private void setHpInternal(final int hp, final boolean notify) {
+	private void setHpInternal(final int hp, final boolean notifyHPUpdated) {
 		this.hp = hp;
 		try {
 			put("hp", hp);
 		} catch (IllegalArgumentException e) {
 			logger.error("Failed to set HP to " + hp + ". Entity was: " + this, e);
 		}
-		if(notify) {
+		if(notifyHPUpdated) {
 			this.updateModifiedAttributes();
 		}
 	}
