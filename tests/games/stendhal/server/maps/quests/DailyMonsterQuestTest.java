@@ -41,6 +41,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.PlayerTestHelper;
@@ -82,6 +83,7 @@ public class DailyMonsterQuestTest {
 	/**
 	 * Tests for fire.
 	 */
+	@Ignore
 	@Test
 	public void testfire() {
 
@@ -101,6 +103,7 @@ public class DailyMonsterQuestTest {
 	/**
 	 * Tests for claimDone.
 	 */
+	@Ignore
 	@Test
 	public void testClaimDone() {
 
