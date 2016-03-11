@@ -31,23 +31,34 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				// NPC doesn't move
-				setPath(null);
+				// NPC moves
+				final List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(11,13));
+				nodes.add(new Node(26,24));
+				nodes.add(new Node(14,33));
+				nodes.add(new Node(19,37));
+				nodes.add(new Node(30,12));
+				nodes.add(new Node(10,3));
+				setPath(new FixedPath(nodes,true));
 			}
+				
+				
+	
+			
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello, I hope you enjoy the nature here.");
-				addHelp("There is a beautiful looking tower around the mountains. It's huge!");
+				addGreeting("Hello, I hope you enjoy the cold wind here.");
+				addHelp("So cold here ! I can give you my goat's products, Can you help me ?");
 				addJob("I am a Goatherd. I can give you a bottle of milk, if only you get me one of each kind of pie. What more can I say?");
 				addGoodbye("Farewell, return to me whenever you need my help.");   
 				
 			}
 		};
 
-		goatherd.setEntityClass("transparentnpc");
-		goatherd.setAlternativeImage("crystalyellownpc");
-		goatherd.setPosition(20, 80);
+		goatherd.setEntityClass("goatherdnpc");
+		goatherd.setAlternativeImage("goatherdnpc");
+		goatherd.setPosition(11, 13);
 		goatherd.initHP(100);
 		goatherd.setDescription("You can see a Goatherd");
 		goatherd.setResistance(0);
