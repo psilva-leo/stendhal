@@ -3,8 +3,12 @@ package games.stendhal.server.maps.semos.mountain;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.core.pathfinder.FixedPath;
+import games.stendhal.server.core.pathfinder.Node;
 
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.List;
 
 /**
  * Goatherd
