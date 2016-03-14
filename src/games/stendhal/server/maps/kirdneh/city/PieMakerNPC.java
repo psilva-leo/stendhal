@@ -1,7 +1,8 @@
-package games.stendhal.server.maps.kirdneh.inn;
+package games.stendhal.server.maps.kirdneh.city;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
+
+
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
@@ -17,16 +18,15 @@ import java.util.TreeMap;
 
 
   	
-public class PieMakerNPC 
+public class PieMakerNPC implements ZoneConfigurator
 {
  		
-    @Override
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	@Override
+	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildNPC(zone);
 	}//configure zone
-private void buildNPC(StendhalRPZone zone) {
-		final SpeakerNPC npc = new SpeakerNPC("Crusty") {
+private void buildNPC(final StendhalRPZone zone) {
+		final SpeakerNPC PieMakerNpc = new SpeakerNPC("Crusty") {
 
 			@Override
 			protected void createPath() {
@@ -68,9 +68,9 @@ private void buildNPC(StendhalRPZone zone) {
 
 			}//createDialogue
 			};//speaker
-			npc.setPosition(15, 3);
-			npc.setEntityClass("bakernpc");
-			npc.setDescription("Crusty makes amazing pies.");
-			zone.add(npc);		
+			PieMakerNpc.setPosition(15, 3);
+			PieMakerNpc.setEntityClass("bakernpc");
+			PieMakerNpc.setDescription("Crusty makes amazing pies.");
+			zone.add(PieMakerNpc);		
 	}//buildNPC
 }//class
