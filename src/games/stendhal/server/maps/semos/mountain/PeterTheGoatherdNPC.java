@@ -52,10 +52,22 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello, I hope you enjoy the cold wind here.");
+				addGreeting("Hello, I hope you enjoy the cool wind here.");
 				addHelp("So cold here ! I can give you my goat's products, Can you help me ?");
 				addJob("I am a Goatherd. I can give you a bottle of milk, if only you get me one of each kind of pie. What more can I say?");
 				addGoodbye("Farewell, return to me whenever you need my help.");   
+				
+			final Map<String, Integer> requiredResources = new TreeMap<String, Integer>();
+				requiredResources.put("Fish pie", Integer.valueOf(1));
+				requiredResources.put("Apple pie", Integer.valueOf(1));
+				requiredResources.put("Cherry pie", Integer.valueOf(1));
+				requiredResources.put("Strawberry pie", Integer.valueOf(1));
+
+				final ProducerBehaviour behaviour = new ProducerBehaviour("peter_give_milk", "give", "milk",
+				        requiredResources, 4 * 60);
+
+				new ProducerAdder().addProducer(this, behaviour,
+				        "Hi! I bet you've heard about my famous fresh goat milk and want me to #give one for you, am I right?");
 				
 			}
 		};
@@ -64,7 +76,7 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 		goatherd.setAlternativeImage("goatherdnpc");
 		goatherd.setPosition(11, 13);
 		goatherd.initHP(100);
-		goatherd.setDescription("You can see a Goatherd");
+		goatherd.setDescription("You can see a Goatherd,his name is Peter, he gives a bottle of fresh goat milk");
 		goatherd.setResistance(0);
 		
 		zone.add(goatherd);
