@@ -72,7 +72,7 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 			}
 		};
 
-		goatherd.setEntityClass("goatherdnpc");
+		goatherd.setEntityClass("welcomernpc");
 		goatherd.setAlternativeImage("goatherdnpc");
 		goatherd.setPosition(11, 13);
 		goatherd.initHP(100);
