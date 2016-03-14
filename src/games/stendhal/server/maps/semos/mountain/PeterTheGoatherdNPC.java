@@ -68,7 +68,7 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi! I bet you've heard about my famous fresh goat milk and want me to #give one for you, am I right?");
-				
+				player.addXP(500);
 			}
 		};
 
