@@ -3,12 +3,15 @@ package games.stendhal.server.maps.semos.mountain;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
+import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.List;
+import java.util.TreeMap;
 
 /**
  * Goatherd
@@ -68,7 +71,7 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 
 				new ProducerAdder().addProducer(this, behaviour,
 				        "Hi! I bet you've heard about my famous fresh goat milk and want me to #give one for you, am I right?");
-				player.addXP(500);
+				//player.addXP(500);
 			}
 		};
 
