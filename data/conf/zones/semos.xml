@@ -2147,6 +2147,9 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
 
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
+    
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.LonJathamNPC"/>
+    
     <configurator
       class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
     <configurator
@@ -4577,5 +4580,3 @@ Southwest: Or'ril Castle and Fado City
   <!-- Level 6 -->
 
 </zones>
-
- 	  	 
