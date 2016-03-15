@@ -72,8 +72,7 @@ public class PeterTheGoatherdNPC implements ZoneConfigurator {
 			}
 		};
 
-		goatherd.setEntityClass("welcomernpc");
-		goatherd.setAlternativeImage("goatherdnpc");
+		goatherd.setEntityClass("oldfishermannpc");
 		goatherd.setPosition(11, 13);
 		goatherd.initHP(100);
 		goatherd.setDescription("You can see a Goatherd,his name is Peter, he gives a bottle of fresh goat milk");
