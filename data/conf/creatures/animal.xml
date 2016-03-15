@@ -1666,5 +1666,26 @@
   </creature>
   
   <!-- END: reptile -->
-  
+
+<creature name="petergoat">
+    <type class="farm_animal" subclass="petergoat" tileid="farm_animal.png:4"/>
+    <description>You see a goat that lives in the mountain.</description>
+    <attributes>
+      <atk value="52"/>
+      <def value="9"/>
+      <hp value="30"/>
+      <speed value="0.3"/>
+      <size value="1,1"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <corpse name="animal"/>
+      <profile name="animal"/>
+      <profile name="non-offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
 </creatures>
+
+
