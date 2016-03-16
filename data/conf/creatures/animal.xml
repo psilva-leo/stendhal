@@ -885,7 +885,7 @@
         <sound value="goat-2" />
       </says>
       <profile name="animal"/>
-      <profile name="offensive"/>
+      <profile name="non offensive"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
