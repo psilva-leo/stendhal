@@ -76,6 +76,7 @@ public class Chest extends Entity implements UseListener {
 			final RPClass chest = new RPClass(CHEST_RPCLASS_NAME);
 			chest.isA("entity");
 			chest.addAttribute("open", Type.FLAG);
+			
 			chest.addRPSlot("content", 30);
 		}
 	}
@@ -104,7 +105,10 @@ public class Chest extends Entity implements UseListener {
 	 */
 	public void open() {
 		this.open = true;
+		System.out.println(getSlot("content").getCapacity());
+		getSlot("content").setCapacity(36);
 		put("open", "");
+		System.out.println(getSlot("content").getCapacity());
 	}
 
 	/**
@@ -127,6 +131,14 @@ public class Chest extends Entity implements UseListener {
 		return open;
 	}
 
+	/**
+	 * Open the chest.
+	 */
+	public void increaseCapacity() {
+		if(getSlot("content").getCapacity() < 36)
+			getSlot("content").setCapacity(36);
+	}
+	
 	/**
 	 * Adds a passive entity (like an item) to the chest.
 	 * 

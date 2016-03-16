@@ -43,7 +43,8 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	 * The open state.
 	 */
 	private static final String STATE_OPEN = "open";
-
+	
+	private static final String STATE_UPGRADE = "upgrade";
 	/**
 	 * The chest model open value changed.
 	 */
@@ -133,6 +134,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
 			list.add(ActionType.OPEN.getRepresentation());
+			list.add(ActionType.UPGRADE.getRepresentation());
 		}
 	}
 
@@ -243,7 +245,8 @@ class Chest2DView extends StateEntity2DView<Chest> {
 
 			at.send(at.fillTargetInfo(entity));
 			break;
-
+		case UPGRADE:
+			break;
 		case CLOSE:
 			
 			at.send(at.fillTargetInfo(entity));
@@ -287,8 +290,15 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	 */
 	private void showWindow() {
 		boolean addListener = slotWindow == null;
+		System.out.println(entity.getContent());
+		entity.getContent().setCapacity(36);
+		if(entity.getContent().getCapacity() == 30){
 		slotWindow = inspector.inspectMe(entity, entity.getContent(),
 				slotWindow, 5, 6);
+		}else{
+			slotWindow = inspector.inspectMe(entity, entity.getContent(),
+					slotWindow, 6, 6);
+		}
 		/*
 		 * Register a listener for window closing so that we can
 		 * drop the reference to the closed window and let the
