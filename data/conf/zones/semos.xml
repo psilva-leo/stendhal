@@ -102,10 +102,14 @@
 
   <zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744"
     file="Level 0/semos/mountain_n2_w.tmx">
+     
     <attributes>
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
+    
+    <configurator
+      class-name="games.stendhal.server.maps.semos.mountain.PeterTheGoatherdNPC" />
 
     <entity x="77" y="127">
       <implementation
@@ -4577,5 +4581,3 @@ Southwest: Or'ril Castle and Fado City
   <!-- Level 6 -->
 
 </zones>
-
- 	  	 
