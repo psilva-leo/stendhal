@@ -2,17 +2,14 @@ package games.stendhal.server.maps.kirdneh.city;
 
 import static org.junit.Assert.*;
 import static utilities.SpeakerNPCTestHelper.getReply;
-import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.kirdneh.inn.PieMakerNPC;
 import marauroa.common.game.RPObject.ID;
-import marauroa.server.game.db.DatabaseFactory;
 
-import org.junit.After;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
