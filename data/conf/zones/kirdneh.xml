@@ -30,6 +30,7 @@
       class-name="games.stendhal.server.maps.kirdneh.city.LittleGirlNPC" />
     <configurator
       class-name="games.stendhal.server.maps.kirdneh.city.FlowerSellerNPC" />
+    
     <configurator
       class-name="games.stendhal.server.maps.kirdneh.city.KirdnehArmorGuyNPC" />
     <entity x="65" y="94">
@@ -1648,6 +1649,8 @@
 
   <zone name="int_kirdneh_inn" file="interiors/kirdneh/inn.tmx">
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.HealerNPC" />
+    <configurator
+      class-name="games.stendhal.server.maps.kirdneh.inn.PieMakerNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.BarmanNPC" />
     <configurator class-name="games.stendhal.server.maps.kirdneh.inn.ItemsOnTable" />
     <portal x="17" y="23" ref="entrance_left">
