@@ -69,7 +69,7 @@ private void buildNPC(final StendhalRPZone zone) {
 			}//createDialogue
 			};//speaker
 			PieMakerNpc.setPosition(15, 3);
-			PieMakerNpc.setEntityClass("bakernpc");
+			PieMakerNpc.setEntityClass("pieMakernpc");
 			PieMakerNpc.setDescription("Crusty makes amazing pies.");
 			zone.add(PieMakerNpc);		
 	}//buildNPC
