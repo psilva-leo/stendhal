@@ -106,6 +106,9 @@
       <parameter name="color_method">time</parameter>
       <parameter name="weather">varying(temperature=-1)</parameter>
     </attributes>
+    
+    <configurator
+      class-name="games.stendhal.server.maps.semos.mountain.PeterTheGoatherdNPC" />
 
     <entity x="77" y="127">
       <implementation
