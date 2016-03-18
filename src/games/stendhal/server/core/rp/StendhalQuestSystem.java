@@ -172,6 +172,7 @@ public class StendhalQuestSystem {
 		loadQuest(new WaterForXhiphin());
 		loadQuest(new WeaponsCollector());
 		loadQuest(new WeaponsCollector2());
+		loadQuest(new PieChallenge());
 		loadQuest(new WeeklyItemQuest());
 		loadQuest(new WizardBank());
 		loadQuest(new ZekielsPracticalTestQuest());
