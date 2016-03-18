@@ -318,4 +318,3 @@ public class PieChallenge extends AbstractQuest {
 		return "Peter the goatherd";
 	}
 }
-
