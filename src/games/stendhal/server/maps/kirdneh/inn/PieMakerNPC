@@ -27,7 +27,7 @@ public class PieMakerNPC implements ZoneConfigurator
 	}//configure zone
 private void buildNPC(final StendhalRPZone zone) {
 		final SpeakerNPC PieMakerNpc = new SpeakerNPC("Crusty") {
-
+            // Define the path of Crusty
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -40,7 +40,8 @@ private void buildNPC(final StendhalRPZone zone) {
 				nodes.add(new Node(10, 7));
 				setPath(new FixedPath(nodes, true));
 			}//createPath
-
+            
+            // Add some dialogue lines
 			@Override
 			public void createDialog() {
 			    addGreeting("Hello!");
@@ -57,7 +58,7 @@ private void buildNPC(final StendhalRPZone zone) {
 				requiredResources.put("flour", 2);
 				requiredResources.put("cheese", 4);
 				requiredResources.put("onion", 1);
-
+                
 				final ProducerBehaviour behaviour = new ProducerBehaviour(
 						"crusty_make_pie", "make", "pie",
 						requiredResources, 7 * 60);
@@ -68,8 +69,11 @@ private void buildNPC(final StendhalRPZone zone) {
 
 			}//createDialogue
 			};//speaker
+			// Set starting position
 			PieMakerNpc.setPosition(15, 3);
+		    // Set entity name
 			PieMakerNpc.setEntityClass("pieMakernpc");
+			// Set entity description
 			PieMakerNpc.setDescription("Crusty makes amazing pies.");
 			zone.add(PieMakerNpc);		
 	}//buildNPC
