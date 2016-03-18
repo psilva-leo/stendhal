@@ -49,6 +49,7 @@ public enum ActionType {
 			return fillTargetPath(super.fillTargetInfo(entity), entity);
 		}
 	},
+	UPGRADE("use", "upgrade"),
 	OWN("own", "Own"),
 	USE("use", "Use") {
 		@Override
