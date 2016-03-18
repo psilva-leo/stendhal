@@ -47,7 +47,7 @@ public class Chest extends Entity implements UseListener {
 		setRPClass(CHEST_RPCLASS_NAME);
 		put("type", CHEST_RPCLASS_NAME);
 		open = false;
-
+		System.out.println(">>Entrou Chest()");
 		final RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
@@ -62,7 +62,7 @@ public class Chest extends Entity implements UseListener {
 		super(object);
 		setRPClass(CHEST_RPCLASS_NAME);
 		put("type", CHEST_RPCLASS_NAME);
-
+		System.out.println(">>Entrou Chest RPObject");
 		if (!hasSlot("content")) {
 			final RPSlot slot = new ChestSlot(this);
 			addSlot(slot);
@@ -72,6 +72,7 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	public static void generateRPClass() {
+		System.out.println(">>Entrou generateRPClass");
 		if (!RPClass.hasRPClass(CHEST_RPCLASS_NAME)) {
 			final RPClass chest = new RPClass(CHEST_RPCLASS_NAME);
 			chest.isA("entity");
@@ -105,10 +106,7 @@ public class Chest extends Entity implements UseListener {
 	 */
 	public void open() {
 		this.open = true;
-		System.out.println(getSlot("content").getCapacity());
-		getSlot("content").setCapacity(36);
 		put("open", "");
-		System.out.println(getSlot("content").getCapacity());
 	}
 
 	/**
@@ -129,14 +127,6 @@ public class Chest extends Entity implements UseListener {
 	 */
 	public boolean isOpen() {
 		return open;
-	}
-
-	/**
-	 * Open the chest.
-	 */
-	public void increaseCapacity() {
-		if(getSlot("content").getCapacity() < 36)
-			getSlot("content").setCapacity(36);
 	}
 	
 	/**

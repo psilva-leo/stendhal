@@ -44,7 +44,6 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	 */
 	private static final String STATE_OPEN = "open";
 	
-	private static final String STATE_UPGRADE = "upgrade";
 	/**
 	 * The chest model open value changed.
 	 */
@@ -134,7 +133,6 @@ class Chest2DView extends StateEntity2DView<Chest> {
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
 			list.add(ActionType.OPEN.getRepresentation());
-			list.add(ActionType.UPGRADE.getRepresentation());
 		}
 	}
 
@@ -290,8 +288,7 @@ class Chest2DView extends StateEntity2DView<Chest> {
 	 */
 	private void showWindow() {
 		boolean addListener = slotWindow == null;
-		System.out.println(entity.getContent());
-		entity.getContent().setCapacity(36);
+
 		if(entity.getContent().getCapacity() == 30){
 		slotWindow = inspector.inspectMe(entity, entity.getContent(),
 				slotWindow, 5, 6);
