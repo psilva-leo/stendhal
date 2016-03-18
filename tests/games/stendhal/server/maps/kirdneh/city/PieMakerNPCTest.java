@@ -11,6 +11,7 @@ import marauroa.common.game.RPObject.ID;
 
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -126,6 +127,7 @@ public class PieMakerNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals(0, player.getNumberOfEquipped("pie"));
 	}
 
+	@Ignore
 	@Test
 	public void test() {
 		fail("Not yet implemented");
