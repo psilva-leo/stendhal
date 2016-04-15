@@ -26,6 +26,7 @@ import java.util.List;
  */
 public abstract class AbstractQuest implements IQuest {
 
+
 	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
 	protected QuestInfo questInfo = new QuestInfo();
