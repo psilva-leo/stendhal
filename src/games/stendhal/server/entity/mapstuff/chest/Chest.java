@@ -46,8 +46,7 @@ public class Chest extends Entity implements UseListener {
 	public Chest() {
 		setRPClass(CHEST_RPCLASS_NAME);
 		put("type", CHEST_RPCLASS_NAME);
-		open = false;
-		System.out.println(">>Entrou Chest()");
+
 		final RPSlot slot = new ChestSlot(this);
 		addSlot(slot);
 	}
@@ -62,7 +61,6 @@ public class Chest extends Entity implements UseListener {
 		super(object);
 		setRPClass(CHEST_RPCLASS_NAME);
 		put("type", CHEST_RPCLASS_NAME);
-		System.out.println(">>Entrou Chest RPObject");
 		if (!hasSlot("content")) {
 			final RPSlot slot = new ChestSlot(this);
 			addSlot(slot);
@@ -72,7 +70,6 @@ public class Chest extends Entity implements UseListener {
 	}
 
 	public static void generateRPClass() {
-		System.out.println(">>Entrou generateRPClass");
 		if (!RPClass.hasRPClass(CHEST_RPCLASS_NAME)) {
 			final RPClass chest = new RPClass(CHEST_RPCLASS_NAME);
 			chest.isA("entity");

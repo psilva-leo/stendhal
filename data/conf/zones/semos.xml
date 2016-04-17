@@ -1718,6 +1718,7 @@ Mature sheep wanted: please speak to Sato.
     <configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.city.SignLessorNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.city.GenericQuestNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.city.MagicTeacherNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.city.PuppyNPC" />
