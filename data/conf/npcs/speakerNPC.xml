@@ -16,20 +16,6 @@
       </says>
     </ai>
   </npc>
-  <npc name="Tad The Third" class="childnpc" zone="0_semos_city" x="25" y="30">
-    <description>The young boy you see is Tad. He looks ill and his face is pale.</description>
-    <ai>
-      <says>
-        <quest introduce="Ssshh! Come here, [name]! I have a #task for you."
-        	during="*sniff* *sniff* I still feel ill, please hurry with that #favour for me."
-        	completed="Hi again, [name]! Thanks again, I'm feeling much better now."/>
-        <job message="I have no Job" />
-        <help message="I am the one who needs help." />
-        <reply keyword="key" message="reply with me when the player says #key" />
-        <reply keyword="key2" message="reply2 with me when the player says #key2" />
-      </says>
-    </ai>
-  </npc>
 
   
 </npcs>

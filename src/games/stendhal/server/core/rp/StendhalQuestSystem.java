@@ -102,7 +102,6 @@ public class StendhalQuestSystem {
 		loadQuest(new FishSoup());
 		loadQuest(new FishSoupForHughie());
 		loadQuest(new FruitsForCoralia());
-		loadQuests(new GenericQuest());
 		loadQuest(new GuessKills());
 		loadQuest(new HatForMonogenes());
 		loadQuest(new HelpTomi());
@@ -178,6 +177,9 @@ public class StendhalQuestSystem {
 		loadQuest(new WizardBank());
 		loadQuest(new ZekielsPracticalTestQuest());
 		loadQuest(new ZooFood());
+		
+		logger.info("-----Loading Custom Quests-----");
+		loadQuests(new GenericQuest());
 
 		if (System.getProperty("stendhal.christmas") != null) {
 			loadQuest(new GoodiesForRudolph());

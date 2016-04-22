@@ -42,24 +42,25 @@ public class GenericQuestLoader {
 
 			// For each NPC
 			for(int i=0; i<quests.getLength(); i++){
-				// Compare current zone to NPC's zone
-				// If it is the same create NPC, skip otherwise
 				Element currentQuest = (Element) quests.item(i);
 				
-				// Add NPC to list
+				// Add Quest to list
 				questsList.add(i,new QuestStructure());
 				
 				// Get name
 				questsList.get(i).setName(currentQuest.getAttribute("name"));
 				
-				// Get NPC's description
+				// Get Quests' description
 				questsList.get(i).setDescription(currentQuest.getElementsByTagName("description").item(0).getTextContent());
 				
-				// Get participants NPCs
-				NodeList npcs = currentQuest.getElementsByTagName("npc");
-				for(int j=0; j<npcs.getLength(); j++){
-					Element currentNPC = (Element) npcs.item(j);
-					questsList.get(i).addNPC(currentNPC.getAttribute("name"));
+				// Get Phases
+				Element currentNode = (Element) currentQuest.getElementsByTagName("history").item(0);
+				NodeList phases = currentNode.getElementsByTagName("phase");
+				for(int j=0; j<phases.getLength(); j++){
+					questsList.get(i).addPhase();
+					Element currentPhase = (Element) phases.item(j);
+					questsList.get(i).getPhase(j).setName(currentPhase.getAttribute("name"));
+					questsList.get(i).getPhase(j).setNPC(currentPhase.getAttribute("npc"));
 				}
 									
 			}

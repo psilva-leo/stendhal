@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class QuestStructure {
 	private String name = "";
 	private String description = "";
-	private ArrayList<String> npcs = new ArrayList<String>();
+	private ArrayList<Phase> phases = new ArrayList<Phase>();
 
 	public String getName() {
 		return name;
@@ -20,11 +20,32 @@ public class QuestStructure {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ArrayList<String> getNpcs() {
-		return npcs;
+	
+	public Phase getPhase(int index) {
+		return phases.get(index);
 	}
-	public void addNPC(String name) {
-		npcs.add(name);
+	public void addPhase() {
+		phases.add(new Phase());
+	}
+
+	public class Phase{
+		private String name = "";
+		private String npc = "";
+
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getNPC() {
+			return npc;
+		}
+		public void setNPC(String name) {
+			this.npc = name;
+		}
+		
 	}
 	
 

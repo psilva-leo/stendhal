@@ -2,7 +2,50 @@
 <quests>
 	<quest name="Medicine for Tad The Second">
 		<description>Tad, a boy in Semos Hostel, needs help to get his medicine.</description>
-		<npc name="Tad The Second"/>
-		<npc name="Ilisa The Second"/>
+		<check> </check>>?
+		
+		<transition state="ATTENDING" > 
+		  <trigger>QUEST_MESSAGES</trigger>
+		  <condition>
+		  	<QuestCompletedCondition/>
+		  </condition>
+		  <nextState>ATTENDING</nextState>
+		  <reply>I'm alright now, thanks.</reply>
+		</transition>
+		
+		<transition state="IDLE"> 
+		  <trigger>GREETING_MESSAGES</trigger>
+		  <condition>
+		  	<and>
+		  		<GreetingMatchesNameCondition/>
+		  		<QuestInStateCondition/>
+		  		<PlayerHasItemWithHimCondition>
+		  			<item name="flask"/>
+		  		</PlayerHasItemWithHimCondition>
+		  	</and>
+		  </condition>
+		  <nextState>ATTENDING</nextState>
+		  <reply>Ok, you got the flask!
+		  		 Here, take this money to cover your expense.
+		  		 Now, I need you to take it to #Ilisa... she'll know what to do next.
+		   </reply>
+		   <action>
+		   	<giveToPlayer exp="10">
+		   		<item name="money" quantity="10"/>
+		   	</giveToPlayer>
+		   	<nextQuestState name="Ilisa"/>
+		   </action>
+		</transition>
+		
 	</quest>
 </quests>
+<!--
+static final String HISTORY_MET_TAD = "I have met Tad in Semos Hostel.";
+	static final String HISTORY_QUEST_OFFERED = "He asked me to buy a flask from Margaret in Semos Tavern.";
+	static final String HISTORY_GOT_FLASK = "I got a flask and will bring it to Tad soon.";
+	static final String HISTORY_TAKE_FLASK_TO_ILISA = "Tad asked me to take the flask to Ilisa at Semos Temple.";
+	static final String HISTORY_ILISA_ASKED_FOR_HERB = "Ilisa asked me to get a herb called Arandula which I can find north of Semos, near the tree grove.";
+	static final String HISTORY_GOT_HERB = "I found some Arandula herbs and will bring them to Ilisa.";
+	static final String HISTORY_POTION_READY = "Ilisa created a powerful potion to help Tad. She asked me to tell him that it is ready.";
+	static final String HISTORY_DONE = "Tad thanked me.";
+-->
