@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<quests>
+	<quest name="Medicine for Tad The Second">
+		<description>Tad, a boy in Semos Hostel, needs help to get his medicine.</description>
+		<phase name="phase1" npc="Tad The Second>
+			<collectables>
+				<item name="flask" quantity="1"/>
+			</collectables>
+			<questCompleted message="I'm alright now, thanks."/>
+			<offerQuest message="I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?"/>
+			<replyCompleted key="flask" message="You've already helped me out! I'm feeling much better now."/>
+			<replyWithOffer key="flask" message="You could probably get a flask from #Margaret." />
+			<questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
+			<questRefused message="Oh, please won't you change your mind? *sneeze*" />
+			<reply key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />
+			<remindWhitoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+		</phase>
+		<phase name="phase2" npc="Tad The Second">
+			<rewards exp="10">
+				<item name="money" quantity="10" />
+			</rewards>
+			<completeLastPhaseTalk>
+				<greeting message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
+				<reply key="flask" message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
+			<completeLastPhaseTalk>
+			<greeting message="Ok, you got the flask! Now, I need you to take it to #Ilisa... she'll know what to do next." />
+			<remindQuest message="I need you to take a flask to #Ilisa... she'll know what to do next." />
+			<reply key="ilisa" message="Ilisa is the summon healer at Semos temple." />
+		</phase>
+	</quest>
+</quests>

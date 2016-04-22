@@ -19,7 +19,7 @@ import games.stendhal.server.maps.quests.QuestStructure;
 
 
 public class GenericQuestLoader {
-	private String questsPath = "./data/conf/quests/quests.xml";
+	private String questsPath = "./data/conf/quests/quests2.xml";
 	private ArrayList<QuestStructure> questsList =  new ArrayList<QuestStructure>();
 	
 	private DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
