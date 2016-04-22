@@ -54,13 +54,85 @@ public class GenericQuestLoader {
 				questsList.get(i).setDescription(currentQuest.getElementsByTagName("description").item(0).getTextContent());
 				
 				// Get Phases
-				Element currentNode = (Element) currentQuest.getElementsByTagName("history").item(0);
-				NodeList phases = currentNode.getElementsByTagName("phase");
+				NodeList phases = currentQuest.getElementsByTagName("phase");
 				for(int j=0; j<phases.getLength(); j++){
+					// Add Phase to list
 					questsList.get(i).addPhase();
+					
+					// Get Phase name
 					Element currentPhase = (Element) phases.item(j);
 					questsList.get(i).getPhase(j).setName(currentPhase.getAttribute("name"));
+					
+					// Set NPC for Phase
 					questsList.get(i).getPhase(j).setNPC(currentPhase.getAttribute("npc"));
+					
+					// Get collectables items
+					Element currentNode = (Element) currentPhase.getElementsByTagName("collectables").item(0);
+					if(currentNode != null){
+						NodeList collectableItems = currentNode.getElementsByTagName("item");
+						for(int k=0; k<collectableItems.getLength(); k++){
+							Element currentItem = (Element) collectableItems.item(k);
+							questsList.get(i).getPhase(j).setCollectableItem(currentItem.getAttribute("name"), currentItem.getAttribute("quantity"));
+						}
+					}
+					
+					// Get collectables items
+					currentNode = (Element) currentPhase.getElementsByTagName("rewards").item(0);
+					if(currentNode != null){
+						NodeList collectableItems = currentNode.getElementsByTagName("item");
+						for(int k=0; k<collectableItems.getLength(); k++){
+							Element currentItem = (Element) collectableItems.item(k);
+							questsList.get(i).getPhase(j).setCollectableItem(currentItem.getAttribute("name"), currentItem.getAttribute("quantity"));
+						}
+					}
+					
+					// Get Message for completedQuest message
+					Element currentTag = (Element) currentPhase.getElementsByTagName("questCompleted").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setQuestCompleted(currentTag.getAttribute("message"));
+					}
+					
+					// Get Message for offerQuest message
+					currentTag = (Element) currentPhase.getElementsByTagName("offerQuest").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setOfferQuest(currentTag.getAttribute("message"));
+					}
+					
+					// Get replies with offer messages
+					NodeList repliesWithOffer = currentPhase.getElementsByTagName("replyWithOffer");
+					for(int k=0; k<repliesWithOffer.getLength(); k++){
+						Element currentReply = (Element) repliesWithOffer.item(k);
+						questsList.get(i).getPhase(j).setRepliesOffer(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
+					}
+					
+					// Get Quest Accepted message
+					currentTag = (Element) currentPhase.getElementsByTagName("questAccepted").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setQuestAccepted(currentTag.getAttribute("message"));
+					}
+					
+					// Get Quest Refused message
+					currentTag = (Element) currentPhase.getElementsByTagName("questRefused").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setQuestRefused(currentTag.getAttribute("message"));
+					}
+					
+					// Reply (generic?)
+					// TODO implement the reply. May be a generic reply or different types. Need to sleep on it.
+					
+					
+					// Reminder player without necessary items. Same question for any item
+					currentTag = (Element) currentPhase.getElementsByTagName("remindWhitoutItem").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setRemindWhitoutItem(currentTag.getAttribute("message"));
+					}
+					
+					// Remind PLayer about the quest when he says something about it (e.g. quest, task)
+					currentTag = (Element) currentPhase.getElementsByTagName("remindQuest").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setRemindQuest(currentTag.getAttribute("message"));
+					}
+					
 				}
 									
 			}

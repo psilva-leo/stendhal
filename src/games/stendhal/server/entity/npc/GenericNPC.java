@@ -30,7 +30,7 @@ public class GenericNPC implements ZoneConfigurator{
 	private void buildNPC(final StendhalRPZone zone) {
 		
 		GenericNPCLoader npcLoader = new GenericNPCLoader();
-		ArrayList<NPCStructure> npcs = npcLoader.getNPCs();
+		final ArrayList<NPCStructure> npcs = npcLoader.getNPCs();
 		
 		for(int ii=0; ii<npcs.size(); ii++){
 		final int i = ii;

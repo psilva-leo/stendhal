@@ -2,7 +2,7 @@
 <quests>
 	<quest name="Medicine for Tad The Second">
 		<description>Tad, a boy in Semos Hostel, needs help to get his medicine.</description>
-		<phase name="phase1" npc="Tad The Second>
+		<phase name="phase1" npc="Tad The Second">
 			<collectables>
 				<item name="flask" quantity="1"/>
 			</collectables>
@@ -17,13 +17,14 @@
 			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 		</phase>
 		<phase name="phase2" npc="Tad The Second">
-			<rewards exp="10">
+			<rewards>
 				<item name="money" quantity="10" />
+				<item name="exp" quantity="10" />
 			</rewards>
 			<completeLastPhaseTalk>
 				<greeting message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
 				<reply key="flask" message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
-			<completeLastPhaseTalk>
+			</completeLastPhaseTalk>
 			<greeting message="Ok, you got the flask! Now, I need you to take it to #Ilisa... she'll know what to do next." />
 			<remindQuest message="I need you to take a flask to #Ilisa... she'll know what to do next." />
 			<reply key="ilisa" message="Ilisa is the summon healer at Semos temple." />

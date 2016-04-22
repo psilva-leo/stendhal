@@ -13,7 +13,7 @@ public class NPCStructure {
 	private String job = "";
 	private String help = "";
 	private Map<String, String> replies = new HashMap<String, String>();
-	private ArrayList<String> keywords = new ArrayList<String>(); 
+	private ArrayList<String> keywords = new ArrayList<String>();
 	private boolean hasQuest = false;
 	private String introduceQuestMessage = "";
 	private String duringQuestMessage = "";
