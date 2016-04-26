@@ -204,18 +204,7 @@ public class StendhalQuestSystem {
 
 		ArrayList<AbstractQuest> genericQuests = quest.getQuests();
 		for(int i=0; i<genericQuests.size(); i++){
-			// for quicker startup, check the stendhal.quest.regex parameter
-			final String regex = System.getProperty("stendhal.quest.regex", ".*");
-			if (!genericQuests.get(i).getName().matches(regex)) {
-				return;
-			}
-			
-			// load the quest and add it to the world
-			try {
-				initQuestAndAddToWorld(genericQuests.get(i));
-			} catch (Exception e) {
-				logger.error("Quest(" + genericQuests.get(i).getName() + ") loading failed.", e);
-			}
+			loadQuest(genericQuests.get(i));
 		}
 		
 	}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <quests>
-	<quest name="Medicine for Tad The Second">
+	<quest name="Medicine for Tad The Second" repeatable="false">
 		<description>Tad, a boy in Semos Hostel, needs help to get his medicine.</description>
 		<phase name="phase1" npc="Tad The Second">
 			<collectables>
@@ -13,7 +13,7 @@
 			<questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
 			<questRefused message="Oh, please won't you change your mind? *sneeze*" />
 			<reply key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />
-			<remindWhitoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+			<remindWithoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 		</phase>
 		<phase name="phase2" npc="Tad The Second">

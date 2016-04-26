@@ -26,14 +26,15 @@ public class GenericQuest {
 		
 		for(int current=0; current<questsStructures.size(); current++){
 			final int i = current;
-			final String QUEST_SLOT = questsStructures.get(i).getName().toLowerCase().replace(" ", "_");
 			
 			AbstractQuest currentQuest = new AbstractQuest() {
+				private final String QUEST_SLOT = questsStructures.get(i).getName().toLowerCase().replace(" ", "_");
 				
 				@Override
 				public String getSlotName() {
 					return QUEST_SLOT;
 				}
+				
 
 				@Override
 				public void addToWorld() {
@@ -41,9 +42,10 @@ public class GenericQuest {
 							questsStructures.get(i).getName(),
 							questsStructures.get(i).getDescription(),
 							false);
+					// questsStructures.get(i).isRepeatable()
 					
 					for(int j=0; j<questsStructures.get(i).getPhaseSize(); j++){
-						SpeakerNPC npc = npcs.get(questsStructures.get(i).getPhase(j).getNPC());
+						final SpeakerNPC npc = npcs.get(questsStructures.get(i).getPhase(j).getNPC());
 						
 						// Quest Already Completed message
 						if(!questsStructures.get(i).getPhase(j).getQuestCompleted().equals("")){
@@ -52,7 +54,7 @@ public class GenericQuest {
 						
 						// Offer Quest to player message
 						if(!questsStructures.get(i).getPhase(j).getOfferQuest().equals("")){
-							offerQuest(npc, questsStructures.get(i).getPhase(j).getQuestCompleted());
+							offerQuest(npc, questsStructures.get(i).getPhase(j).getOfferQuest());
 						}
 						
 						// Reply to player for certain words if he has already completed the quest
@@ -80,7 +82,7 @@ public class GenericQuest {
 						// Remind player about quest if he still don`t have the item
 						// Trigger: any of the items
 						if(!questsStructures.get(i).getPhase(j).getQuestRefused().equals("")){
-							remindWhitoutItem(npc, questsStructures.get(i).getPhase(j).getQuestRefused(), questsStructures.get(i).getPhase(j).getCollectables(), questsStructures.get(i).getPhase(j).getName());
+							remindWithoutItem(npc, questsStructures.get(i).getPhase(j).getQuestRefused(), questsStructures.get(i).getPhase(j).getCollectables(), questsStructures.get(i).getPhase(j).getName());
 						}
 						
 						// Remind player about quest if he says something about it
@@ -97,19 +99,22 @@ public class GenericQuest {
 				@Override
 				public List<String> getHistory(Player player) {
 					final List<String> res = new ArrayList<String>();
-					if (player.hasQuest(questsStructures.get(i).getPhase(0).getNPC()+"FirstChat")) {
-						res.add("Met"+questsStructures.get(i).getPhase(0).getNPC());
+					if (player.hasQuest(questsStructures.get(i).getPhase(0).getNPC().replace(" ", "")+"FirstChat")) {
+						res.add("Met "+questsStructures.get(i).getPhase(0).getNPC());
 					}
 					if (!player.hasQuest(QUEST_SLOT)) {
 						return res;
 					}
+					res.add("Debug1");
+					res.add("Debug2");
+					res.add("Debug3");
 					
 					return res;
 				}
 
 				@Override
 				public String getName() {
-					return questsStructures.get(i).getName();
+					return questsStructures.get(i).getName().replace(" ", "");
 				}
 				
 				
@@ -168,7 +173,7 @@ public class GenericQuest {
 							null);
 				}
 				
-				private void remindWhitoutItem(SpeakerNPC npc, String message, ArrayList<String> collectables, String state){
+				private void remindWithoutItem(SpeakerNPC npc, String message, ArrayList<String> collectables, String state){
 					for(int k=0; k<collectables.size(); k++){
 						npc.add(ConversationStates.ATTENDING,
 								collectables.get(k),

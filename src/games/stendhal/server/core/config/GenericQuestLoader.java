@@ -50,6 +50,9 @@ public class GenericQuestLoader {
 				// Get name
 				questsList.get(i).setName(currentQuest.getAttribute("name"));
 				
+				// Get repeatable
+				questsList.get(i).setRepeatable(currentQuest.getAttribute("repeatable").equals("true"));
+				
 				// Get Quests' description
 				questsList.get(i).setDescription(currentQuest.getElementsByTagName("description").item(0).getTextContent());
 				
@@ -76,7 +79,7 @@ public class GenericQuestLoader {
 						}
 					}
 					
-					// Get collectables items
+					// Get rewards
 					currentNode = (Element) currentPhase.getElementsByTagName("rewards").item(0);
 					if(currentNode != null){
 						NodeList collectableItems = currentNode.getElementsByTagName("item");
@@ -122,9 +125,9 @@ public class GenericQuestLoader {
 					
 					
 					// Reminder player without necessary items. Same question for any item
-					currentTag = (Element) currentPhase.getElementsByTagName("remindWhitoutItem").item(0);
+					currentTag = (Element) currentPhase.getElementsByTagName("remindWithoutItem").item(0);
 					if(currentTag != null){
-						questsList.get(i).getPhase(j).setRemindWhitoutItem(currentTag.getAttribute("message"));
+						questsList.get(i).getPhase(j).setRemindWithoutItem(currentTag.getAttribute("message"));
 					}
 					
 					// Remind PLayer about the quest when he says something about it (e.g. quest, task)

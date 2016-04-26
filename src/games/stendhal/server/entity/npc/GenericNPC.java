@@ -54,7 +54,7 @@ public class GenericNPC implements ZoneConfigurator{
 							ConversationPhrases.GREETING_MESSAGES,
 							new AndCondition(
 									new GreetingMatchesNameCondition(getName()),
-									new QuestNotStartedCondition("introduce_players"),
+									new QuestNotStartedCondition(npcs.get(i).getQuestName().toLowerCase().replace(" ", "_")),
 									new ChatCondition() {
 										@Override
 										public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
@@ -76,7 +76,7 @@ public class GenericNPC implements ZoneConfigurator{
 					add(ConversationStates.IDLE,
 							ConversationPhrases.GREETING_MESSAGES,
 							new AndCondition(new GreetingMatchesNameCondition(getName()),
-									new QuestCompletedCondition("introduce_players")),
+									new QuestCompletedCondition(npcs.get(i).getQuestName().toLowerCase().replace(" ", "_"))),
 					        ConversationStates.ATTENDING,
 					        null,
 					        new SayTextAction(npcs.get(i).getCompletedQuestMessage()));
@@ -103,8 +103,8 @@ public class GenericNPC implements ZoneConfigurator{
 			npc.addInitChatMessage(null, new ChatAction() {
 				@Override
 				public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-					if (!player.hasQuest(npcs.get(i).getName()+"FirstChat")) {
-						player.setQuest(npcs.get(i).getName()+"FirstChat", "done");
+					if (!player.hasQuest(npcs.get(i).getName().replace(" ", "")+"FirstChat")) {
+						player.setQuest(npcs.get(i).getName().replace(" ", "")+"FirstChat", "done");
 						((SpeakerNPC) raiser.getEntity()).listenTo(player, "hi");
 					}
 				}

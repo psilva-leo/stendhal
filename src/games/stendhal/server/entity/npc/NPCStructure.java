@@ -14,6 +14,7 @@ public class NPCStructure {
 	private String help = "";
 	private Map<String, String> replies = new HashMap<String, String>();
 	private ArrayList<String> keywords = new ArrayList<String>();
+	private String questName = "";
 	private boolean hasQuest = false;
 	private String introduceQuestMessage = "";
 	private String duringQuestMessage = "";
@@ -84,6 +85,13 @@ public class NPCStructure {
 		return keywords;
 	}
 	
+	public String getQuestName() {
+		return questName;
+	}
+	public void setQuestName(String questName) {
+		this.questName = questName;
+	}
+	
 	public boolean hasQuest(){
 		return hasQuest;
 	}
@@ -111,5 +119,6 @@ public class NPCStructure {
 	public void setCompletedQuestMessage(String postQuestMessage) {
 		this.completedQuestMessage = postQuestMessage;
 	}
+	
 	
 }

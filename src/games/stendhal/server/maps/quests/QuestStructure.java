@@ -8,6 +8,7 @@ public class QuestStructure {
 	private String name = "";
 	private String description = "";
 	private ArrayList<Phase> phases = new ArrayList<Phase>();
+	private boolean repeatable = false;
 
 	public String getName() {
 		return name;
@@ -33,6 +34,13 @@ public class QuestStructure {
 		return phases.size();
 	}
 
+	public boolean isRepeatable() {
+		return repeatable;
+	}
+	public void setRepeatable(boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
 	public class Phase{
 		private String name = "";
 		private String npc = "";
@@ -48,7 +56,7 @@ public class QuestStructure {
 		private ArrayList<String> repliesOffer = new ArrayList<String>();
 		private String questAccepted = "";
 		private String questRefused = "";
-		private String remindWhitoutItem = "";
+		private String remindWithoutItem = "";
 		private String remindQuest = "";
 
 		/* Phase Name */
@@ -152,11 +160,11 @@ public class QuestStructure {
 		}
 		
 		/* Quest Reminder without collectable item(ns) Message */
-		public String getRemindWhitoutItem() {
-			return remindWhitoutItem;
+		public String getRemindWithoutItem() {
+			return remindWithoutItem;
 		}
-		public void setRemindWhitoutItem(String remindWhitoutItem) {
-			this.remindWhitoutItem = remindWhitoutItem;
+		public void setRemindWithoutItem(String remindWithoutItem) {
+			this.remindWithoutItem = remindWithoutItem;
 		}
 		
 		/* Quest Reminder Message (Player asking for quest)*/

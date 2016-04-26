@@ -72,11 +72,10 @@ public class GenericNPCLoader {
 				npcsList.get(i).setDescription(currentNPC.getElementsByTagName("description").item(0).getTextContent());
 				
 				// Get Quest messages
-				Element currentNode = (Element) currentNPC.getElementsByTagName("ai").item(0);
-				currentNode = (Element) currentNode.getElementsByTagName("says").item(0);
-				Element currentElement = (Element) currentNode.getElementsByTagName("quest").item(0);
+				Element currentElement = (Element) currentNPC.getElementsByTagName("quest").item(0);
 				if(currentElement != null){
 					npcsList.get(i).setQuest("true");
+					npcsList.get(i).setQuestName(currentElement.getAttribute("name"));
 					npcsList.get(i).setIntroduceQuestMessage(currentElement.getAttribute("introduce"));
 					npcsList.get(i).setDuringQuestMessage(currentElement.getAttribute("during"));
 					npcsList.get(i).setCompletedQuestMessage(currentElement.getAttribute("completed"));
@@ -93,9 +92,7 @@ public class GenericNPCLoader {
 					npcsList.get(i).setHelp(currentElement.getAttribute("message"));
 				
 				// Get replies
-				currentElement = (Element) currentNPC.getElementsByTagName("ai").item(0);
-				currentElement = (Element) currentElement.getElementsByTagName("says").item(0);
-				NodeList replies = currentElement.getElementsByTagName("reply");
+				NodeList replies = currentNPC.getElementsByTagName("reply");
 				for(int j=0; j<replies.getLength(); j++){
 					Element currentReply = (Element) replies.item(j);
 					npcsList.get(i).setReply(currentReply.getAttribute("keyword"), currentReply.getAttribute("message"));
