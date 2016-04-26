@@ -68,7 +68,7 @@
 		 	</completeLastPhaseTalk>
 			<questCompleted message="Thanks! I will go talk with #Ilisa as soon as possible."/>
 		</phase>
-		<phase name="phase5" npc="Ketteh Wehoh">
+		<phase name="phase6" npc="Ketteh Wehoh">
 			<remindQuest message="Goodbye. Don't forget to check on Tad. I hope he's feeling better."/>
 			<infoQuest  message="Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya."/>
 		</phase>
