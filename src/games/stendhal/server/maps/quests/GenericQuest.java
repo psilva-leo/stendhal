@@ -1,14 +1,23 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import games.stendhal.server.core.config.GenericQuestLoader;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ChatCondition;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
+import games.stendhal.server.entity.npc.action.IncreaseXPAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.condition.AndCondition;
+import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -47,6 +56,8 @@ public class GenericQuest {
 					for(int j=0; j<questsStructures.get(i).getPhaseSize(); j++){
 						final SpeakerNPC npc = npcs.get(questsStructures.get(i).getPhase(j).getNPC());
 						
+						System.out.println("Phase: "+questsStructures.get(i).getPhase(j).getName()+" NPC: "+questsStructures.get(i).getPhase(j).getNPC());
+						
 						// Quest Already Completed message
 						if(!questsStructures.get(i).getPhase(j).getQuestCompleted().equals("")){
 							questCompleted(npc, questsStructures.get(i).getPhase(j).getQuestCompleted());
@@ -66,7 +77,7 @@ public class GenericQuest {
 						// Reply to player for certain words if he has not already completed the quest and offer him the quest
 						for(int k=0; k<questsStructures.get(i).getPhase(j).getRepliesOffers().size(); k++){
 							String key = questsStructures.get(i).getPhase(j).getRepliesOffers().get(k);
-							replyWithOffer(npc, key, questsStructures.get(i).getPhase(j).getRepliesOfferMessage(key));
+							replyWithOffer(npc, key, questsStructures.get(i).getPhase(j).getReplyOfferMessage(key));
 						}
 						
 						// Player accepts Question
@@ -81,14 +92,48 @@ public class GenericQuest {
 
 						// Remind player about quest if he still don`t have the item
 						// Trigger: any of the items
-						if(!questsStructures.get(i).getPhase(j).getQuestRefused().equals("")){
-							remindWithoutItem(npc, questsStructures.get(i).getPhase(j).getQuestRefused(), questsStructures.get(i).getPhase(j).getCollectables(), questsStructures.get(i).getPhase(j).getName());
+						if(!questsStructures.get(i).getPhase(j).getRemindWithoutItem().equals("")){
+							remindWithoutItem(npc, questsStructures.get(i).getPhase(j).getRemindWithoutItem(), questsStructures.get(i).getPhase(j).getCollectables(), questsStructures.get(i).getPhase(j).getName());
 						}
 						
 						// Remind player about quest if he says something about it
 						// Trigger: quest, task, etc
-						if(!questsStructures.get(i).getPhase(j).getQuestRefused().equals("")){
-							remindQuest(npc, questsStructures.get(i).getPhase(j).getQuestRefused(), questsStructures.get(i).getPhase(j).getName());
+						if(!questsStructures.get(i).getPhase(j).getRemindQuest().equals("")){
+							remindQuest(npc, questsStructures.get(i).getPhase(j).getRemindQuest(), questsStructures.get(i).getPhase(j).getName());
+						}
+						
+						// Complete last phase talk
+						if(questsStructures.get(i).getPhase(j).isHasCompleteLastPhaseTalk()){
+							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreeting().equals("")){
+								if(questsStructures.get(i).getPhase(j-1).getCollectables().size() > 0){
+									greeting(npc, questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreeting(),
+											questsStructures.get(i).getPhase(j-1), questsStructures.get(i).getPhase(j));
+								}
+							}
+							// TODO if there drop is false get the collectables from prev phase
+							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().isDrop()){
+								for(int k=0; k<questsStructures.get(i).getPhase(j-1).getCollectables().size(); k++){
+									String item = questsStructures.get(i).getPhase(j-1).getCollectables().get(k);
+									questsStructures.get(i).getPhase(j).setCollectableItem(item, questsStructures.get(i).getPhase(j-1).getCollectableItemQuantity(item));
+								}
+								
+							}
+						}else{
+							// MEMO maybe?
+							// if there drop is false get the collectables from prev phase
+							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().isDrop() && j > 0){
+								for(int k=0; k<questsStructures.get(i).getPhase(j-1).getCollectables().size(); k++){
+									String item = questsStructures.get(i).getPhase(j-1).getCollectables().get(k);
+									questsStructures.get(i).getPhase(j).setCollectableItem(item, questsStructures.get(i).getPhase(j-1).getCollectableItemQuantity(item));
+								}
+								
+							}
+						}
+						
+						// greeting message
+						// Has to stay beneath Complete Last Phase Talk
+						if(!questsStructures.get(i).getPhase(j).getGreeting().equals("")){
+							greeting(npc, questsStructures.get(i).getPhase(j).getGreeting(), questsStructures.get(i).getPhase(j));
 						}
 						
 						
@@ -193,6 +238,79 @@ public class GenericQuest {
 			                ConversationStates.ATTENDING,
 			                message,
 			                null);
+				}
+				
+				private void greeting(SpeakerNPC npc, String message, QuestStructure.Phase prevPhase, QuestStructure.Phase currentPhase){
+					final List<ChatAction> processStep = new LinkedList<ChatAction>();
+					
+					// Drop items if needed
+					if(currentPhase.getCompleteLastPhaseTalk().isDrop()){
+						ArrayList<String> collectables = prevPhase.getCollectables();
+						for(int i=0; i<collectables.size(); i++){
+							processStep.add(new DropItemAction(collectables.get(i).toLowerCase(), Integer.parseInt(currentPhase.getCollectableItemQuantity(collectables.get(i)))));
+						}
+					}
+					
+					// Give rewards if any
+					for(int i=0; i<currentPhase.getRewards().size(); i++){
+						String item = currentPhase.getRewards().get(i);
+						if(item.toLowerCase().equals("xp")){
+							processStep.add(new IncreaseXPAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
+						}else{
+							if(item.toLowerCase().equals("karma")){
+								processStep.add(new IncreaseKarmaAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
+							}else{
+								processStep.add(new EquipItemAction(item.toLowerCase(), Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
+							}
+						}
+					}
+					
+					// Go to next phase status
+					processStep.add(new SetQuestAction(QUEST_SLOT, 0, currentPhase.getName()));
+					
+					// Conditions to chat
+					// Right player, correct state, has collectable items
+					final  List<ChatCondition> conditions = new LinkedList<ChatCondition>();
+					conditions.add(new GreetingMatchesNameCondition(npc.getName()));
+					conditions.add(new QuestInStateCondition(QUEST_SLOT, 0, prevPhase.getName()));
+					
+					for(int i=0; i<prevPhase.getCollectables().size(); i++){
+						String item = prevPhase.getCollectables().get(i);
+						if(!item.toLowerCase().equals("xp") && !item.toLowerCase().equals("karma")){
+							conditions.add(new PlayerHasItemWithHimCondition(item.toLowerCase(),Integer.parseInt(prevPhase.getCollectableItemQuantity(item))));
+						}
+					}
+					
+					// Greeting message
+					npc.add(ConversationStates.IDLE,
+							ConversationPhrases.GREETING_MESSAGES,
+							new AndCondition(conditions),
+							ConversationStates.ATTENDING,
+							message,
+							new MultipleActions(processStep));
+				}
+				
+				private void greeting(SpeakerNPC npc, String message, QuestStructure.Phase currentPhase){								
+					// Conditions to chat
+					// Right player, correct state, has collectable items
+					final  List<ChatCondition> conditions = new LinkedList<ChatCondition>();
+					conditions.add(new GreetingMatchesNameCondition(npc.getName()));
+					conditions.add(new QuestInStateCondition(QUEST_SLOT, 0, currentPhase.getName()));
+					
+					for(int i=0; i<currentPhase.getCollectables().size(); i++){
+						String item = currentPhase.getCollectables().get(i);
+						if(!item.toLowerCase().equals("xp") && !item.toLowerCase().equals("karma")){
+							conditions.add(new PlayerHasItemWithHimCondition(item.toLowerCase(),Integer.parseInt(currentPhase.getCollectableItemQuantity(item))));
+						}
+					}
+					
+					// Greeting message
+					npc.add(ConversationStates.IDLE,
+							ConversationPhrases.GREETING_MESSAGES,
+							new AndCondition(conditions),
+							ConversationStates.ATTENDING,
+							message,
+							null);
 				}
 				
 			};

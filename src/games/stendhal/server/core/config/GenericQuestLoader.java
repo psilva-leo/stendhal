@@ -82,10 +82,10 @@ public class GenericQuestLoader {
 					// Get rewards
 					currentNode = (Element) currentPhase.getElementsByTagName("rewards").item(0);
 					if(currentNode != null){
-						NodeList collectableItems = currentNode.getElementsByTagName("item");
-						for(int k=0; k<collectableItems.getLength(); k++){
-							Element currentItem = (Element) collectableItems.item(k);
-							questsList.get(i).getPhase(j).setCollectableItem(currentItem.getAttribute("name"), currentItem.getAttribute("quantity"));
+						NodeList rewardItems = currentNode.getElementsByTagName("item");
+						for(int k=0; k<rewardItems.getLength(); k++){
+							Element currentItem = (Element) rewardItems.item(k);
+							questsList.get(i).getPhase(j).setRewardItem(currentItem.getAttribute("name"), currentItem.getAttribute("quantity"));
 						}
 					}
 					
@@ -135,6 +135,29 @@ public class GenericQuestLoader {
 					if(currentTag != null){
 						questsList.get(i).getPhase(j).setRemindQuest(currentTag.getAttribute("message"));
 					}
+					
+					// Get Greeting message
+					currentTag = (Element) currentPhase.getElementsByTagName("greeting").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setGreeting(currentTag.getAttribute("message"));
+					}
+					
+					// Get Complete Last Phase Talk
+					currentNode = (Element) currentPhase.getElementsByTagName("completeLastPhaseTalk").item(0);
+					if(currentNode != null){
+						questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setDrop(currentNode.getAttribute("drop").equals("true"));
+						questsList.get(i).getPhase(j).setHasCompleteLastPhaseTalk(true);
+						Element greeting = (Element) currentNode.getElementsByTagName("greeting").item(0);
+						if(greeting != null){
+							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setGreeting(greeting.getAttribute("message"));
+						}
+						NodeList replies = currentNode.getElementsByTagName("reply");
+						for(int k=0; k<replies.getLength(); k++){
+							Element currentReply = (Element) replies.item(k);
+							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setReplyMessage(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
+						}
+					}
+					
 					
 				}
 									

@@ -58,6 +58,9 @@ public class QuestStructure {
 		private String questRefused = "";
 		private String remindWithoutItem = "";
 		private String remindQuest = "";
+		private boolean hasCompleteLastPhaseTalk = false;
+		private CompleteLastPhaseTalk completeLastPhaseTalk =  new CompleteLastPhaseTalk();
+		private String greeting = "";
 
 		/* Phase Name */
 		public String getName() {
@@ -131,7 +134,7 @@ public class QuestStructure {
 		}
 			
 		/* Replies if quest offered (not accepted neither rejected) Messages */
-		public String getRepliesOfferMessage(String key) {
+		public String getReplyOfferMessage(String key) {
 			return repliesOfferMap.get(key);
 		}
 		public void setRepliesOffer(String key, String message) {
@@ -175,7 +178,62 @@ public class QuestStructure {
 			this.remindQuest = remindQuest;
 		}
 		
+		public boolean isHasCompleteLastPhaseTalk() {
+			return hasCompleteLastPhaseTalk;
+		}
+		public void setHasCompleteLastPhaseTalk(boolean hasCompleteLastPhaseTalk) {
+			this.hasCompleteLastPhaseTalk = hasCompleteLastPhaseTalk;
+		}
+
+		public CompleteLastPhaseTalk getCompleteLastPhaseTalk() {
+			return completeLastPhaseTalk;
+		}
 		
+
+		public String getGreeting() {
+			return greeting;
+		}
+		public void setGreeting(String greeting) {
+			this.greeting = greeting;
+		}
+
+
+		public class CompleteLastPhaseTalk{
+			private String greeting = "";
+			private Map<String, String> repliesMap = new HashMap<String, String>();
+			private ArrayList<String> replies = new ArrayList<String>();
+			private boolean drop = false;
+
+			public String getGreeting() {
+				return greeting;
+			}
+
+			public void setGreeting(String greeting) {
+				this.greeting = greeting;
+			}
+			
+			/* Replies if Completed Messages */
+			public String getReplyMessage(String key) {
+				return repliesMap.get(key);
+			}
+			public void setReplyMessage(String key, String message) {
+				repliesMap.put(key, message);
+				replies.add(key);
+			}
+			
+			public ArrayList<String> getReplies() {
+				return replies;
+			}
+
+			public boolean isDrop() {
+				return drop;
+			}
+
+			public void setDrop(boolean drop) {
+				this.drop = drop;
+			}
+			
+		}
 		
 		
 		

@@ -40,6 +40,10 @@ public class AndCondition implements ChatCondition {
 	public AndCondition(final ChatCondition... condition) {
 		this.conditions = Arrays.asList(condition);
 	}
+	
+	public AndCondition(final List<ChatCondition> conditions){
+		this.conditions = conditions;
+	}
 
 	@Override
 	public boolean fire(final Player player, final Sentence sentence, final Entity entity) {
