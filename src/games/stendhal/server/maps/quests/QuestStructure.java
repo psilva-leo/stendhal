@@ -50,6 +50,8 @@ public class QuestStructure {
 		private ArrayList<String> rewards = new ArrayList<String>();
 		private String questCompleted = "";
 		private String offerQuest = "";
+		private Map<String, String> repliesMap = new HashMap<String, String>();
+		private ArrayList<String> replies = new ArrayList<String>();
 		private Map<String, String> repliesCompletedMap = new HashMap<String, String>();
 		private ArrayList<String> repliesCompleted = new ArrayList<String>();
 		private Map<String, String> repliesOfferMap = new HashMap<String, String>();
@@ -121,6 +123,19 @@ public class QuestStructure {
 		}
 		public void setOfferQuest(String offerQuest) {
 			this.offerQuest = offerQuest;
+		}
+		
+		/* Replies Messages */
+		public String getReplyMessage(String key) {
+			return repliesMap.get(key);
+		}
+		public void setReplyMessage(String key, String message) {
+			repliesMap.put(key, message);
+			replies.add(key);
+		}
+		
+		public ArrayList<String> getReplies() {
+			return replies;
 		}
 		
 		/* Replies if Completed Messages */

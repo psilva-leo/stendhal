@@ -75,10 +75,16 @@ public class GenericQuest {
 							replyCompleted(npc, key, questsStructures.get(i).getPhase(j).getReplyCompletedMessage(key));
 						}
 						
-						// Reply to player for certain words if he has not already completed the quest and offer him the quest
+						// Reply to player for certain words offering the quest
 						for(int k=0; k<questsStructures.get(i).getPhase(j).getRepliesOffers().size(); k++){
 							String key = questsStructures.get(i).getPhase(j).getRepliesOffers().get(k);
 							replyWithOffer(npc, key, questsStructures.get(i).getPhase(j).getReplyOfferMessage(key));
+						}
+						
+						// Reply to player for certain words
+						for(int k=0; k<questsStructures.get(i).getPhase(j).getReplies().size(); k++){
+							String key = questsStructures.get(i).getPhase(j).getReplies().get(k);
+							reply(npc, key, questsStructures.get(i).getPhase(j).getReplyMessage(key));
 						}
 						
 						// Player accepts Question
@@ -198,6 +204,16 @@ public class GenericQuest {
 					npc.add(ConversationStates.ATTENDING,
 							key,
 							new QuestCompletedCondition(QUEST_SLOT),
+							ConversationStates.ATTENDING,
+							message,
+							null);
+				}
+				
+				private void reply(SpeakerNPC npc, String key, String message){
+					System.out.println("key: "+key+" message: "+message);
+					npc.add(ConversationStates.ATTENDING,
+							key,
+							null,
 							ConversationStates.ATTENDING,
 							message,
 							null);

@@ -12,8 +12,8 @@
 			<replyWithOffer key="flask" message="You could probably get a flask from #Margaret." />
 			<questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
 			<questRefused message="Oh, please won't you change your mind? *sneeze*" />
-			<!-- May have to change the replyOffer below-->
 			<replyWithOffer key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />  
+			<reply key="margaret" message="Margaret is the maid in the inn just down the street."/>
 			<remindWithoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 		</phase>
@@ -40,10 +40,10 @@
 		   	</completeLastPhaseTalk>
 		   	<remindWhitoutItem message="Medicine for #Tad? Didn't he tell you to bring a flask?"/>
 		   	<replyWithOffer message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<showImage key="yes" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<showImage key="ok" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<showImage key="herb" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<reply key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage name="arandula.png" title="Ilisa's drawing" caption="Arandula" key="yes" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage name="arandula.png" title="Ilisa's drawing" caption="Arandula"key="ok" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage name="arandula.png" title="Ilisa's drawing" caption="Arandula"key="herb" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage name="arandula.png" title="Ilisa's drawing" caption="Arandula"key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
 		   	<reply key="tad" message="He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him."/>
 		</phase>
 		<phase name="phase4" npc="Ilisa">

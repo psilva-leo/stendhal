@@ -122,6 +122,13 @@ public class GenericQuestLoader {
 					
 					// Reply (generic?)
 					// TODO implement the reply. May be a generic reply or different types. Need to sleep on it.
+					NodeList replies = currentPhase.getElementsByTagName("reply");
+					if(replies != null){
+						for(int k=0; k<replies.getLength(); k++){
+							Element currentReply = (Element) replies.item(k);
+							questsList.get(i).getPhase(j).setReplyMessage(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
+						}
+					}
 					
 					
 					// Reminder player without necessary items. Same question for any item
@@ -157,13 +164,12 @@ public class GenericQuestLoader {
 						if(greeting != null){
 							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setGreeting(greeting.getAttribute("message"));
 						}
-						NodeList replies = currentNode.getElementsByTagName("reply");
+						replies = currentNode.getElementsByTagName("reply");
 						for(int k=0; k<replies.getLength(); k++){
 							Element currentReply = (Element) replies.item(k);
 							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setReplyMessage(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
 						}
 					}
-					
 					
 					NodeList images = currentPhase.getElementsByTagName("showImage");
 					if(images != null){
