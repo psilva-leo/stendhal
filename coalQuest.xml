@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<quests>
+	<quest name="Coal For Haunchy 2">
+		<description>Haunchy needs coal for his barbeque.</description>
+		<collectables>
+				<item name="coal" quantity="25"/>
+		</collectables>
+		<rewards>
+				<item name="karma" quantity="5" />
+		</rewards>
+		<loss>
+		     <item name = "karma" quantity="-10"/>
+		</loss>
+		<phase name="phase1" npc="Haunchy Meatoch">
+			<questCompleted message="I can go on with grilling my tasty steaks now! Thank you!"/>
+			<offerQuest message="I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?"/>
+			<replyCompleted message="I can go on with grilling my tasty steaks now! Thank you!"/>
+			<replyWithOffer key="coal" message="Coal isn't easy to find. You normally can find it somewhere in the ground but perhaps you are lucky and find some in the old Semos Mine tunnels..." />
+			<replyIfRepeatable message = "The last coal you brought me is mostly gone again. Will you bring me some more?"/>
+			<replyIfNotRepeatable message ="The coal amount behind my counter is still high enough. I will not need more for"/>
+			<questAccepted key="start" message="Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward."/>
+			<questRefused message="Oh, never mind. I thought you love BBQs like I do. Bye then." />
+	    </phase>
+		<phase name="phase2" npc="Hauchy Meatoch">
+		    <rewards>
+				<item name="grilled steak" quantity="1" />
+		    </rewards>
+			<completeLastPhaseTalk>
+				<reply key="coal" message="Thank you!! Take from my grill!" />
+			</completeLastPhaseTalk>
+			<questReminder message="You don't have the coal amount which I need yet. Go and pick some more pieces up, please."/>
+			<questReminder key="coal" message= "Sometime you could do me a #favour ..."/>
+			<questReminder key="stone coal" message= "Sometime you could do me a #favour ..."/>
+		</phase>
+	</quest>
+</quests><?xml version="1.0" encoding="UTF-8"?>
