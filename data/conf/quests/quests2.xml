@@ -13,7 +13,7 @@
 			<questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
 			<questRefused message="Oh, please won't you change your mind? *sneeze*" />
 			<reply key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />
-			<remindWhitoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+			<remindWithoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 		</phase>
 		<phase name="phase2" npc="Tad The Second">
@@ -29,7 +29,7 @@
 			<remindQuest message="I need you to take a flask to #Ilisa... she'll know what to do next." />
 			<reply key="ilisa" message="Ilisa is the summon healer at Semos temple." />
 		</phase>
-		<phase>
+
 		<phase name="phase3" npc="Ilisa">
 		  <remindWhitoutItem message="Medicine for #Tad? Didn't he tell you to bring a flask?"/>
 		  <rewards>
@@ -46,7 +46,7 @@
 		   <reply key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
 		   <reply key="tad" message="He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him."/>
 		</phase>
-		<phase>
+
 			<phase name="phase4" npc="Ilisa">
 			<remindWhitoutItem message= "Can you fetch those #herbs for the #medicine?"/>
 			<rewards>
@@ -56,12 +56,12 @@
 			<completeLastPhaseTalk>
 			 <greeting message="Can you fetch those #herbs for the #medicine?"/>
 			 <reply key="arandula" message= "Can you fetch those #herbs for the #medicine?"/>
-			</<completeLastPhaseTalk>
+			</completeLastPhaseTalk>
 			<greeting message="Can you fetch those #herbs for the #medicine?"/>
 			<prepareItem key="arandula" message="Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing."/>
 			<explainItem key="medicine" massage= "The medicine that #Tad is waiting for."/>
 		</phase>
-		<phase>
+
 		 <phase name="phase5" npc="Tad The Second">
 		    <rewards>
 		    <item name="xp" quantity="200" />
@@ -71,10 +71,63 @@
 		 </completeLastPhaseTalk>
 		 <questCompleted message="Thanks! I will go talk with #Ilisa as soon as possible."/>
 		</phase>
-		<phase>
+
 		  <phase name="phase5" npc="Kettah Wehoh">
 		   <remindQuest message="Goodbye. Don't forget to check on Tad. I hope he's feeling better."/>
 		   <infoQuest  message="Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya."/>
 		</phase>
 	</quest>
+	
+	<quest name="Cloak Collector">
+		<description> Josephine, a young woman who live in Ados/Fado. Josephine asks you to bring her a cloak in every colour available on the mainland</description>
+		<phase name="phase1" npc="Josephine">
+			<collectables>
+				<item name="cloak" quantity="1"/>
+				<item name="elf cloak" quantity="1"/>
+				<item name="dwarf cloak" quantity="1"/>
+				<item name="blue elf cloak" quantity="1"/>
+				<item name="stone cloak" quantity="1"/>
+				<item name="green dragon cloak" quantity="1"/>
+				<item name="bone dragon cloak" quantity="1"/>
+				<item name="lich cloak" quantity="1"/>
+				<item name="vampire cloak" quantity="1"/>
+				<item name="blue dragon cloak" quantity="1"/>				
+			</collectables>
+    
+
+	<questCompleted message =  "Hello! Did you bring any #cloaks with you?"/>
+	<replyCompleted key="cloaks" message = "Hi again, lovely. The cloaks still look great. Thanks!" />
+	<replyWithOffer message= "At the moment I'm obsessed with #cloaks! They come in so many colours. I want all the pretty ones!"/>
+	<questAccepted message="Brilliant! I'm so excited!"/>
+	<rewards>
+				<item name="karma" quantity="5.0" />
+	</rewards>
+	
+	<questRefused message = "Oh ... you're not very friendly. Bye then." />
+	<rewards>
+				<item name="karma" quantity="-0.5" />
+	</rewards>
+	
+	<reply message= "Great! What #cloaks did you bring?"/>
+	
+	<rewards>
+				<item name="karma" quantity="5" />
+				<item name= "xp" quantity="10000" />
+	</rewards>
+	<missingItems message="I want [quantity] . That's [items] . Will you find them?"/>
+	<missingItemsStill message="I want [quantity] . That's [items] . Did you bring any?"/>
+	<itemBought message = "Wow, thank you! What else did you bring?"/>
+	<lastItemResponse message = "Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour."/>
+	<remindWithoutItem message = "Oh, I'm disappointed. You don't really have [items]  with you."/>
+	<itemMissing message = "You've already brought that cloak to me."/>
+	<itemNeeded message = "Sorry, that's not a cloak I asked you for."/>
+	<noItems message= "Okay then. Come back later."/>
+	
+	<rewards>
+				<item name="karma" quantity="5.0" />
+				<item name="xp" quantity="10000" />
+	</rewards>
+	</phase>
+	</quest>
+	
 </quests>
