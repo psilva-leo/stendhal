@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<quests>
+  <quest name="Medicine for Tad The Second" repeatable="false">
+    <description>Enter description for your quest here</description>
+    <!-- You shouldn't edit phase names. leave them as they are.-->
+    <phase name="phase1" npc="Here, enter the name of the NPC who hands out the quest">
+      <collectables>
+        <!-- In collectibles, you must define what the player character must go and fetch for the quest giver, for each different item, add a line, 
+        and then add the name of the item and the quantity that needs to be brought to the NPC-->
+        <item name="insert the name of the item here. If there are spaces in the item name, put them here as well" quantity="in here, write the quantity of that item"/>
+      </collectables>
+      <!-- When writing the following messages, dont forget that you need to add link words between them by using a hashtag close to a word.
+      For example, if you want the player character to go to the next dialogue segment when he says "love", you must add a "#love" in your first message-->
+      <questCompleted message="Here, add what the NPC must say when the quest is completed"/>
+      <offerQuest message="Here, add the message the NPC says to offer you the quest. dont forget to add a #"/>
+      <replyCompleted key="flask" message="This oen doesnt need a hashtag, just write in what the NPC says when the quest is complete."/>
+      <replyWithOffer key="flask" message="You could probably get a flask from #Margaret." /> <<<<<<<<<wtf is this?
+      <questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
+      <questRefused message="Oh, please won't you change your mind? *sneeze*" />
+      <!-- May have to change the replyOffer below-->
+      <replyWithOffer key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />
+      <remindWithoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+      <remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
+    </phase>
+    <phase name="phase2" npc="Tad The Second">
+      <rewards>
+        <item name="money" quantity="10" />
+        <item name="xp" quantity="10" />
+      </rewards>
+      <completeLastPhaseTalk drop="false">
+        <greeting message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
+        <reply key="flask" message="Ok, you got the flask! Here, take this money to cover your expense. Now, I need you to take it to #Ilisa... she'll know what to do next." />
+      </completeLastPhaseTalk>
+      <greeting message="Ok, you got the flask! Now, I need you to take it to #Ilisa... she'll know what to do next." />
+      <remindQuest message="I need you to take a flask to #Ilisa... she'll know what to do next." />
+      <reply key="ilisa" message="Ilisa is the summon healer at Semos temple." />
+    </phase>
+    <phase name="phase3" npc="Ilisa">
+      <rewards>
+        <item name="xp" quantity="10"/>
+      </rewards>
+      <completeLastPhaseTalk drop="true">
+        <greetingWithoutItem message="Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?"/>
+        <greeting message="Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?"/>
+      </completeLastPhaseTalk>
+      <remindWhitoutItem message="Medicine for #Tad? Didn't he tell you to bring a flask?"/>
+      <replyWithOffer message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+      <showImage key="yes" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+      <showImage key="ok" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+      <showImage key="herb" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+      <reply key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+      <reply key="tad" message="He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him."/>
+    </phase>
+    <phase name="phase4" npc="Ilisa">
+      <remindWhitoutItem message= "Can you fetch those #herbs for the #medicine?"/>
+      <rewards>
+        <item name="karma" quantity="4" />
+        <item name="xp" quantity="50" />
+      </rewards>
+      <completeLastPhaseTalk drop="false">
+        <greeting message="Can you fetch those #herbs for the #medicine?"/>
+        <reply key="arandula" message= "Can you fetch those #herbs for the #medicine?"/>
+      </completeLastPhaseTalk>
+      <greeting message="Can you fetch those #herbs for the #medicine?"/>
+      <prepareItem key="arandula" message="Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing."/>
+      <explainItem key="medicine" massage= "The medicine that #Tad is waiting for."/>
+    </phase>
+    <phase name="phase5" npc="Tad The Second">
+      <rewards>
+        <item name="xp" quantity="200" />
+      </rewards>
+      <completeLastPhaseTalk>
+        <remindQuest message="*cough* I hope #Ilisa hurries with my medicine..."/>
+      </completeLastPhaseTalk>
+      <questCompleted message="Thanks! I will go talk with #Ilisa as soon as possible."/>
+    </phase>
+    <phase name="phase6" npc="Ketteh Wehoh">
+      <remindQuest message="Goodbye. Don't forget to check on Tad. I hope he's feeling better."/>
+      <infoQuest  message="Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya."/>
+    </phase>
+  </quest>
+</quests>
