@@ -61,7 +61,10 @@ public class QuestStructure {
 		private boolean hasCompleteLastPhaseTalk = false;
 		private CompleteLastPhaseTalk completeLastPhaseTalk =  new CompleteLastPhaseTalk();
 		private String greeting = "";
-
+		private String greetingWithoutItem = "";
+		private ArrayList<Image> images = new ArrayList<Image>(); 
+		
+		
 		/* Phase Name */
 		public String getName() {
 			return name;
@@ -196,7 +199,55 @@ public class QuestStructure {
 		public void setGreeting(String greeting) {
 			this.greeting = greeting;
 		}
+		
+		public String getGreetingWithoutItem() {
+			return greetingWithoutItem;
+		}
+		public void setGreetingWithoutItem(String greetingWithoutItem) {
+			this.greetingWithoutItem = greetingWithoutItem;
+		}
 
+		public ArrayList<Image> getImages() {
+			return images;
+		}
+		public void setImage(String image, String title, String caption, String key, String message) {
+			images.add(new Image(image, title, caption, key, message));
+		}
+
+		public class Image{
+			private String image = "";
+			private String title = "";
+			private String caption = "";
+			private String key = "";
+			private String message = "";
+			
+			public Image(String image, String title, String caption, String key, String message){
+				this.image = image;
+				this.title = title;
+				this.caption = caption;
+				this.key = key;
+				this.message = message;
+			}
+			public String getImage() {
+				return image;
+			}
+			
+			public String getTitle() {
+				return title;
+			}
+
+			public String getCaption() {
+				return caption;
+			}
+			
+			public String getKey() {
+				return key;
+			}
+			public String getMessage() {
+				return message;
+			}
+
+		}
 
 		public class CompleteLastPhaseTalk{
 			private String greeting = "";

@@ -12,6 +12,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.action.DropItemAction;
 import games.stendhal.server.entity.npc.action.EquipItemAction;
+import games.stendhal.server.entity.npc.action.ExamineChatAction;
 import games.stendhal.server.entity.npc.action.IncreaseKarmaAction;
 import games.stendhal.server.entity.npc.action.IncreaseXPAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
@@ -135,7 +136,18 @@ public class GenericQuest {
 						if(!questsStructures.get(i).getPhase(j).getGreeting().equals("")){
 							greeting(npc, questsStructures.get(i).getPhase(j).getGreeting(), questsStructures.get(i).getPhase(j));
 						}
+
+						// greeting without items
+						if(!questsStructures.get(i).getPhase(j).getGreetingWithoutItem().equals("")){
+							greetingWithoutItem(npc, questsStructures.get(i).getPhase(j).getGreetingWithoutItem(), questsStructures.get(i).getPhase(j).getName());
+						}
 						
+						
+						if(questsStructures.get(i).getPhase(j).getImages().size() > 0){
+							for(int k=0; k<questsStructures.get(i).getPhase(j).getImages().size(); k++){							
+								showImage(npc, questsStructures.get(i).getPhase(j), questsStructures.get(i).getPhase(j).getImages().get(k));
+							}
+						}
 						
 					}
 					
@@ -247,7 +259,8 @@ public class GenericQuest {
 					if(currentPhase.getCompleteLastPhaseTalk().isDrop()){
 						ArrayList<String> collectables = prevPhase.getCollectables();
 						for(int i=0; i<collectables.size(); i++){
-							processStep.add(new DropItemAction(collectables.get(i).toLowerCase(), Integer.parseInt(currentPhase.getCollectableItemQuantity(collectables.get(i)))));
+							System.out.println("item:"+collectables.get(i).toLowerCase()+" quantity: ");
+							processStep.add(new DropItemAction(collectables.get(i).toLowerCase(), Integer.parseInt(prevPhase.getCollectableItemQuantity(collectables.get(i)))));
 						}
 					}
 					
@@ -311,6 +324,34 @@ public class GenericQuest {
 							ConversationStates.ATTENDING,
 							message,
 							null);
+				}
+				
+				private void greetingWithoutItem(SpeakerNPC npc, String message, String state){
+					npc.add(ConversationStates.IDLE,
+							ConversationPhrases.GREETING_MESSAGES,
+							new AndCondition(
+									new GreetingMatchesNameCondition(npc.getName()),
+									new QuestInStateCondition(QUEST_SLOT, 0, state),
+									new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
+							ConversationStates.ATTENDING,
+							message,
+							null);
+				}
+				
+				// TODO Verify if the phaseName+"drawing" works
+				private void showImage(SpeakerNPC npc, QuestStructure.Phase currentPhase, QuestStructure.Phase.Image image){
+					ChatAction showArandulaDrawing = new ExamineChatAction(image.getImage(), image.getTitle(), image.getCaption());
+					ChatAction flagDrawingWasShown = new SetQuestAction(QUEST_SLOT, 1, currentPhase.getName()+"drawing");
+					npc.add(
+							ConversationStates.ATTENDING,
+							image.getKey(),
+							new AndCondition(
+									new QuestInStateCondition(QUEST_SLOT, 0, currentPhase.getName()),
+									new NotCondition(new QuestInStateCondition(QUEST_SLOT, 1, currentPhase.getName()+"drawing")),
+									new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
+							ConversationStates.ATTENDING,
+							image.getMessage(),
+							new MultipleActions(showArandulaDrawing, flagDrawingWasShown));
 				}
 				
 			};

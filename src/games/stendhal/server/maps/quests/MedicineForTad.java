@@ -371,9 +371,12 @@ public class MedicineForTad extends AbstractQuest {
 				ILISA_TALK_PREPARE_MEDICINE,
 				new MultipleActions(processStep));
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList(STATE_POTION,
-				"medicine"), null, ConversationStates.ATTENDING,
-				ILISA_TALK_EXPLAIN_MEDICINE, null);
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList(STATE_POTION, "medicine"), 
+				null,
+				ConversationStates.ATTENDING,
+				ILISA_TALK_EXPLAIN_MEDICINE,
+				null);
 	}
 
 	private void step_6() {

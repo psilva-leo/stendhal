@@ -142,6 +142,12 @@ public class GenericQuestLoader {
 						questsList.get(i).getPhase(j).setGreeting(currentTag.getAttribute("message"));
 					}
 					
+					// Get GreetingWithoutItem message
+					currentTag = (Element) currentPhase.getElementsByTagName("greetingWithoutItem").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setGreetingWithoutItem(currentTag.getAttribute("message"));
+					}
+					
 					// Get Complete Last Phase Talk
 					currentNode = (Element) currentPhase.getElementsByTagName("completeLastPhaseTalk").item(0);
 					if(currentNode != null){
@@ -155,6 +161,20 @@ public class GenericQuestLoader {
 						for(int k=0; k<replies.getLength(); k++){
 							Element currentReply = (Element) replies.item(k);
 							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setReplyMessage(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
+						}
+					}
+					
+					
+					NodeList images = currentPhase.getElementsByTagName("showImage");
+					if(images != null){
+						for(int k=0; k<images.getLength(); k++){
+							currentTag = (Element) images.item(k);
+							String image = currentTag.getAttribute("image"); 
+							String title = currentTag.getAttribute("title");
+							String caption = currentTag.getAttribute("caption");
+							String key = currentTag.getAttribute("key");
+							String message = currentTag.getAttribute("message");
+							questsList.get(i).getPhase(j).setImage(image, title, caption, key, message);
 						}
 					}
 					

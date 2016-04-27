@@ -12,7 +12,8 @@
 			<replyWithOffer key="flask" message="You could probably get a flask from #Margaret." />
 			<questAccepted message="Great! Please go as quickly as you can. *sneeze*" />
 			<questRefused message="Oh, please won't you change your mind? *sneeze*" />
-			<reply key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />
+			<!-- May have to change the replyOffer below-->
+			<replyWithOffer key="margaret" message="Margaret is the maid in the inn just down the street. So, will you help?" />  
 			<remindWithoutItem message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 			<remindQuest message="*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret." />
 		</phase>
@@ -33,15 +34,15 @@
 		  	<rewards>
 		    	<item name="xp" quantity="10"/>
 		  	</rewards>
-		  	<completeLastPhaseTalk>
+		  	<completeLastPhaseTalk drop="true">
+		   		<greetingWithoutItem message="Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?"/>
 		   		<greeting message="Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?"/>
 		   	</completeLastPhaseTalk>
-		   	<greeting message="Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a #herb. Can you help?"/>
 		   	<remindWhitoutItem message="Medicine for #Tad? Didn't he tell you to bring a flask?"/>
 		   	<replyWithOffer message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<reply key="yes" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<reply key="ok" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
-		   	<reply key="herb" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage key="yes" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage key="ok" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
+		   	<showImage key="herb" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
 		   	<reply key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
 		   	<reply key="tad" message="He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him."/>
 		</phase>
@@ -51,9 +52,9 @@
 				<item name="karma" quantity="4" />
 				<item name="xp" quantity="50" />
 			</rewards>
-			<completeLastPhaseTalk>
-			<greeting message="Can you fetch those #herbs for the #medicine?"/>
-			<reply key="arandula" message= "Can you fetch those #herbs for the #medicine?"/>
+			<completeLastPhaseTalk drop="false">
+				<greeting message="Can you fetch those #herbs for the #medicine?"/>
+				<reply key="arandula" message= "Can you fetch those #herbs for the #medicine?"/>
 			</completeLastPhaseTalk>
 			<greeting message="Can you fetch those #herbs for the #medicine?"/>
 			<prepareItem key="arandula" message="Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing."/>
