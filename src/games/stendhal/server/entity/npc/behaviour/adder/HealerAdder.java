@@ -118,6 +118,8 @@ public class HealerAdder {
 
 					}
 		});
+		
+	
 
 		engine.add(ConversationStates.HEAL_OFFERED,
 				ConversationPhrases.YES_MESSAGES, null,

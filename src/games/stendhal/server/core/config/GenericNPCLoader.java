@@ -106,7 +106,7 @@ public class GenericNPCLoader {
 				if(currentElement != null)
 					npcsList.get(i).setSellsWhat(currentElement.getAttribute("service"));
 				
-				//Get whether it heals, and how much - based on player level
+				//Get whether it heals, and how much - based on player level (in this case 2 * level + 1
 				currentElement = (Element) currentNPC.getElementsByTagName("healing").item(0);
 				if(currentElement != null){
 					npcsList.get(i).setCanHeal(true);
