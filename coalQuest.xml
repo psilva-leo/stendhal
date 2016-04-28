@@ -11,7 +11,7 @@
 		<loss>
 		     <item name = "karma" quantity="-10"/>
 		</loss>
-		<phase name="phase1" npc="Haunchy Meatoch">
+		<phase name="phase1" npc="Haunchy Meatoch1">
 			<questCompleted message="I can go on with grilling my tasty steaks now! Thank you!"/>
 			<offerQuest message="I cannot use wood for this huge BBQ. To keep the heat I need some really old stone coal but there isn't much left. The problem is, that I can't fetch it myself because my steaks would burn then so I have to stay here. Can you bring me 25 pieces of #coal for my BBQ please?"/>
 			<replyCompleted message="I can go on with grilling my tasty steaks now! Thank you!"/>
@@ -21,7 +21,7 @@
 			<questAccepted key="start" message="Thank you! If you have found 25 pieces, say #coal to me so I know you have it. I'll be sure to give you a nice and tasty reward."/>
 			<questRefused message="Oh, never mind. I thought you love BBQs like I do. Bye then." />
 	    </phase>
-		<phase name="phase2" npc="Hauchy Meatoch">
+		<phase name="phase2" npc="Haunchy Meatoch1">
 		    <rewards>
 				<item name="grilled steak" quantity="1" />
 		    </rewards>
