@@ -2156,6 +2156,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1" condition="!stendhal.christmas">
       <implementation
@@ -2335,6 +2336,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
   <zone name="int_semos_temple" file="interiors/semos/temple.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.temple.HealerNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1">
       <implementation
@@ -2993,6 +2995,7 @@ Holy mackerel! These chips are tasty.
     <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1">
       <implementation

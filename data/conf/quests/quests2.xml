@@ -30,7 +30,7 @@
 			<remindQuest message="I need you to take a flask to #Ilisa... she'll know what to do next." />
 			<reply key="ilisa" message="Ilisa is the summon healer at Semos temple." />
 		</phase>
-		<phase name="phase3" npc="Ilisa">
+		<phase name="phase3" npc="Ilisa The Second">
 		  	<rewards>
 		    	<item name="xp" quantity="10"/>
 		  	</rewards>
@@ -46,7 +46,7 @@
 		   	<reply key="arandula" message="North of Semos, near the tree grove, grows a herb called arandula. Here is a picture I drew so you know what to look for."/>
 		   	<reply key="tad" message="He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him."/>
 		</phase>
-		<phase name="phase4" npc="Ilisa">
+		<phase name="phase4" npc="Ilisa The Second">
 			<remindWhitoutItem message= "Can you fetch those #herbs for the #medicine?"/>
 			<rewards>
 				<item name="karma" quantity="4" />

@@ -13,6 +13,44 @@
     <reply keyword="key" message="reply with me when the player says #key" />
     <reply keyword="key2" message="reply2 with me when the player says #key2" />
   </npc>
+  
+  <npc name="Margaret The Second" class="tavernbarmaidnpc" zone="int_semos_tavern_0" x="11" y="4">
+    <description>"Margaret looks so warm and welcoming that you can't help but want to buy something from her."</description>
+    <quest name="Medicine for Tad The Second" 
+    	introduce=""
+        during=""
+        completed=""/>
+    <job message="I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food." />
+    <help message="This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink." />
+    <reply keyword="key" message="reply with me when the player says #key" />
+    <reply keyword="key2" message="reply2 with me when the player says #key2" />
+    <sell behaviour="foodanddrinks"/>
+  </npc>
+  
+  <npc name="Ilisa The Second" class="welcomernpc" zone="int_semos_temple" x="9" y="6">
+    <description>"You see Ilisa. She is young, pretty and her magical aura is enclosing her."</description>
+    <quest name="Medicine for Tad The Second" 
+    	introduce=""
+        during="Can you fetch those #herbs for the #medicine?"
+        completed=""/>
+    <job message="My special powers help me to heal wounded people. I also sell potions and antidotes." />
+    <help message="I can #heal you here for a cost, or you can take one of my prepared medicines with you on your travels; just ask for an #offer." />
+    <reply keyword="key" message="reply with me when the player says #key" />
+    <reply keyword="key2" message="reply2 with me when the player says #key2" />
+    <sell behaviour="healing" cost = "2*PlayerLevel+1"/>
+  </npc>
+  
+  <npc name="Ketteh Wehoh The Second" class="elegantladynpc" zone="int_semos_townhall" x="13" y="38">
+    <description>"Ketteh Wehoh is the town Decency and Manners Warden who stands in the Townhall of Semos."</description>
+    <quest name="Medicine for Tad The Second" 
+    	introduce="Farewell. Have you met Tad, in the hostel? If you get a chance, please check in on him. I heard he was not feeling well. You can find the hostel in Semos village, close to Nishiya."
+        during="Goodbye. Don't forget to check on Tad. I hope he's feeling better."
+        completed=""/>
+    <job message="My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway." />
+    <help message="I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance. I can tell you how to #colour your #outfit, too." />
+    <reply keyword="key" message="reply with me when the player says #key" />
+    <reply keyword="key2" message="reply2 with me when the player says #key2" />
+  </npc>
 
   
 </npcs>

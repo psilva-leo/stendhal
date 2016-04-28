@@ -46,15 +46,18 @@ public class GenericNPCLoader {
 			String zone = getZone();
 
 			// For each NPC
-			for(int i=0; i<npcs.getLength(); i++){
+			for(int current=0; current<npcs.getLength(); current++){
 				// Compare current zone to NPC's zone
 				// If it is the same create NPC, skip otherwise
-				Element currentNPC = (Element) npcs.item(i);
-				if(!currentNPC.getAttribute("zone").equals(zone))
+				Element currentNPC = (Element) npcs.item(current);
+				if(!currentNPC.getAttribute("zone").equals(zone)){
 					continue;
+				}
+					
 				
 				// Add NPC to list
-				npcsList.add(i,new NPCStructure());
+				npcsList.add(new NPCStructure());
+				int i = npcsList.size()-1;
 				
 				// Get name
 				npcsList.get(i).setName(currentNPC.getAttribute("name"));
