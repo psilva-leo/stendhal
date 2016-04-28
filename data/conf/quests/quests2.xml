@@ -80,7 +80,7 @@
 	
 	<quest name="Cloak Collector">
 		<description> Josephine, a young woman who live in Ados/Fado. Josephine asks you to bring her a cloak in every colour available on the mainland</description>
-		<phase name="phase1" npc="Josephine">
+		<phase name="phase1" npc="Josephine1">
 			<collectables>
 				<item name="cloak" quantity="1"/>
 				<item name="elf cloak" quantity="1"/>
