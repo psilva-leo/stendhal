@@ -13,6 +13,11 @@
     <reply keyword="key" message="reply with me when the player says #key" />
     <reply keyword="key2" message="reply2 with me when the player says #key2" />
   </npc>
-
+  <npc name="Ilisa The Second" zone="0_semos_city" x="30" y="30">
+  	<description>The young boy you see is Tad. He looks ill and his face is pale.</description>
+  </npc>
+  <npc name="Ketteh Wehoh The Second" zone="0_semos_city" x="40" y="30">
+  	<description>The young boy you see is Tad. He looks ill and his face is pale.</description>
+  </npc>
   
 </npcs>

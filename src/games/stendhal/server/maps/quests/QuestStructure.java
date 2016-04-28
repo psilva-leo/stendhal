@@ -46,6 +46,10 @@ public class QuestStructure {
 		private String npc = "";
 		private Map<String, String> collectablesMap = new HashMap<String, String>();
 		private ArrayList<String> collectables = new ArrayList<String>();
+		private Map<String, String> ingredientsMap = new HashMap<String, String>();
+		private ArrayList<String> ingredients = new ArrayList<String>();
+		private String itemToCreate = "";
+		private String itemToCreateMessage = "";
 		private Map<String, String> rewardsMap = new HashMap<String, String>();
 		private ArrayList<String> rewards = new ArrayList<String>();
 		private String questCompleted = "";
@@ -65,6 +69,8 @@ public class QuestStructure {
 		private String greeting = "";
 		private String greetingWithoutItem = "";
 		private ArrayList<Image> images = new ArrayList<Image>(); 
+		private String goodbyeNotCompleted = "";
+		private String goodbyeNotStarted = "";
 		
 		
 		/* Phase Name */
@@ -108,6 +114,29 @@ public class QuestStructure {
 		public ArrayList<String> getRewards(){
 			return rewards;
 		}
+		
+		/* Items to create  */
+		public String getIngredientsQuantity(String item) {
+			return ingredientsMap.get(item);
+		}
+		public void setIngredients(String name, String quantity) {
+			ingredientsMap.put(name, quantity);
+			ingredients.add(name);
+		}
+		
+		public ArrayList<String> getIngredients(){
+			return ingredients;
+		}
+		
+		
+		public String getItemToCreate() {
+			return itemToCreate;
+		}
+		
+		public void setItemToCreate(String itemToCreate) {
+			this.itemToCreate = itemToCreate;
+		}
+
 		
 		/* Quest Completed Message */
 		public String getQuestCompleted() {
@@ -229,6 +258,36 @@ public class QuestStructure {
 			images.add(new Image(image, title, caption, key, message));
 		}
 
+		/**
+		 * @return the itemToCreateMessage
+		 */
+		public String getItemToCreateMessage() {
+			return itemToCreateMessage;
+		}
+		/**
+		 * @param itemToCreateMessage the itemToCreateMessage to set
+		 */
+		public void setItemToCreateMessage(String itemToCreateMessage) {
+			this.itemToCreateMessage = itemToCreateMessage;
+		}
+
+		
+		public String getGoodbyeNotCompleted() {
+			return goodbyeNotCompleted;
+		}
+		public void setGoodbyeNotCompleted(String goodbyeNotCompleted) {
+			this.goodbyeNotCompleted = goodbyeNotCompleted;
+		}
+
+
+		public String getGoodbyeNotStarted() {
+			return goodbyeNotStarted;
+		}
+		public void setGoodbyeNotStarted(String goodbyeNotStarted) {
+			this.goodbyeNotStarted = goodbyeNotStarted;
+		}
+
+
 		public class Image{
 			private String image = "";
 			private String title = "";
@@ -269,6 +328,7 @@ public class QuestStructure {
 			private Map<String, String> repliesMap = new HashMap<String, String>();
 			private ArrayList<String> replies = new ArrayList<String>();
 			private boolean drop = false;
+			private String greetingWithoutItem = "";
 
 			public String getGreeting() {
 				return greeting;
@@ -297,6 +357,14 @@ public class QuestStructure {
 
 			public void setDrop(boolean drop) {
 				this.drop = drop;
+			}
+
+			public String getGreetingWithoutItem() {
+				return greetingWithoutItem;
+			}
+
+			public void setGreetingWithoutItem(String greetingWithoutItem) {
+				this.greetingWithoutItem = greetingWithoutItem;
 			}
 			
 		}

@@ -46,15 +46,18 @@ public class GenericNPCLoader {
 			String zone = getZone();
 
 			// For each NPC
-			for(int i=0; i<npcs.getLength(); i++){
+			for(int current=0; current<npcs.getLength(); current++){
 				// Compare current zone to NPC's zone
 				// If it is the same create NPC, skip otherwise
-				Element currentNPC = (Element) npcs.item(i);
-				if(!currentNPC.getAttribute("zone").equals(zone))
+				Element currentNPC = (Element) npcs.item(current);
+				if(!currentNPC.getAttribute("zone").equals(zone)){
 					continue;
+				}					
 				
 				// Add NPC to list
-				npcsList.add(i,new NPCStructure());
+				npcsList.add(new NPCStructure());
+				
+				int i = npcsList.size()-1;
 				
 				// Get name
 				npcsList.get(i).setName(currentNPC.getAttribute("name"));
@@ -69,7 +72,8 @@ public class GenericNPCLoader {
 					npcsList.get(i).setY(Integer.parseInt(currentNPC.getAttribute("y")));
 				
 				// Get NPC's description
-				npcsList.get(i).setDescription(currentNPC.getElementsByTagName("description").item(0).getTextContent());
+				if(currentNPC.getElementsByTagName("description").item(0).getTextContent() != null)
+					npcsList.get(i).setDescription(currentNPC.getElementsByTagName("description").item(0).getTextContent());
 				
 				// Get Quest messages
 				Element currentElement = (Element) currentNPC.getElementsByTagName("quest").item(0);
@@ -97,7 +101,7 @@ public class GenericNPCLoader {
 					Element currentReply = (Element) replies.item(j);
 					npcsList.get(i).setReply(currentReply.getAttribute("keyword"), currentReply.getAttribute("message"));
 				}
-				
+				i++;
 			}
 			
 		} catch (ParserConfigurationException e) {

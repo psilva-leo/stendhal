@@ -23,7 +23,9 @@ import games.stendhal.server.entity.npc.condition.NotCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
+import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
+import games.stendhal.server.entity.npc.condition.QuestStartedCondition;
 import games.stendhal.server.entity.player.Player;
 
 public class GenericQuest {
@@ -57,6 +59,7 @@ public class GenericQuest {
 					for(int j=0; j<questsStructures.get(i).getPhaseSize(); j++){
 						final SpeakerNPC npc = npcs.get(questsStructures.get(i).getPhase(j).getNPC());
 						
+						System.out.println("----------------------------");
 						System.out.println("Phase: "+questsStructures.get(i).getPhase(j).getName()+" NPC: "+questsStructures.get(i).getPhase(j).getNPC());
 						
 						// Quest Already Completed message
@@ -112,11 +115,22 @@ public class GenericQuest {
 						// Complete last phase talk
 						if(questsStructures.get(i).getPhase(j).isHasCompleteLastPhaseTalk()){
 							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreeting().equals("")){
-								if(questsStructures.get(i).getPhase(j-1).getCollectables().size() > 0){
-									greeting(npc, questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreeting(),
-											questsStructures.get(i).getPhase(j-1), questsStructures.get(i).getPhase(j));
-								}
+								//if(questsStructures.get(i).getPhase(j-1).getCollectables().size() > 0){
+								greeting(npc, questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreeting(),
+										questsStructures.get(i).getPhase(j-1), questsStructures.get(i).getPhase(j));
+								//}
 							}
+							
+							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreetingWithoutItem().equals(""))
+								greetingWithoutItem(npc, questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getGreetingWithoutItem(), questsStructures.get(i).getPhase(j-1));
+							
+							
+							// Reply to player for certain words
+							for(int k=0; k<questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getReplies().size(); k++){
+								String key = questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getReplies().get(k);
+								reply(npc, key, questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().getReplyMessage(key));
+							}
+							
 							// TODO if there drop is false get the collectables from prev phase
 							if(!questsStructures.get(i).getPhase(j).getCompleteLastPhaseTalk().isDrop()){
 								for(int k=0; k<questsStructures.get(i).getPhase(j-1).getCollectables().size(); k++){
@@ -142,10 +156,15 @@ public class GenericQuest {
 						if(!questsStructures.get(i).getPhase(j).getGreeting().equals("")){
 							greeting(npc, questsStructures.get(i).getPhase(j).getGreeting(), questsStructures.get(i).getPhase(j));
 						}
-
-						// greeting without items
-						if(!questsStructures.get(i).getPhase(j).getGreetingWithoutItem().equals("")){
-							greetingWithoutItem(npc, questsStructures.get(i).getPhase(j).getGreetingWithoutItem(), questsStructures.get(i).getPhase(j).getName());
+						
+						// Get goodbyeNotCompleted message
+						if(!questsStructures.get(i).getPhase(j).getGoodbyeNotCompleted().equals("")){
+							goodbyeNotCompleted(npc, questsStructures.get(i).getPhase(j).getGoodbyeNotCompleted());
+						}
+						
+						// Get goodbyeNotStarted message
+						if(!questsStructures.get(i).getPhase(j).getGoodbyeNotStarted().equals("")){
+							goodbyeNotStarted(npc, questsStructures.get(i).getPhase(j).getGoodbyeNotStarted());
 						}
 						
 						
@@ -210,7 +229,6 @@ public class GenericQuest {
 				}
 				
 				private void reply(SpeakerNPC npc, String key, String message){
-					System.out.println("key: "+key+" message: "+message);
 					npc.add(ConversationStates.ATTENDING,
 							key,
 							null,
@@ -275,7 +293,7 @@ public class GenericQuest {
 					if(currentPhase.getCompleteLastPhaseTalk().isDrop()){
 						ArrayList<String> collectables = prevPhase.getCollectables();
 						for(int i=0; i<collectables.size(); i++){
-							System.out.println("item:"+collectables.get(i).toLowerCase()+" quantity: ");
+							System.out.println("drop item:"+collectables.get(i).toLowerCase()+" quantity: "+Integer.parseInt(prevPhase.getCollectableItemQuantity(collectables.get(i))));
 							processStep.add(new DropItemAction(collectables.get(i).toLowerCase(), Integer.parseInt(prevPhase.getCollectableItemQuantity(collectables.get(i)))));
 						}
 					}
@@ -284,11 +302,14 @@ public class GenericQuest {
 					for(int i=0; i<currentPhase.getRewards().size(); i++){
 						String item = currentPhase.getRewards().get(i);
 						if(item.toLowerCase().equals("xp")){
+							System.out.println("increase xp by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 							processStep.add(new IncreaseXPAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 						}else{
 							if(item.toLowerCase().equals("karma")){
+								System.out.println("increase karma by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 								processStep.add(new IncreaseKarmaAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 							}else{
+								System.out.println("give item:"+item.toLowerCase()+" by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 								processStep.add(new EquipItemAction(item.toLowerCase(), Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 							}
 						}
@@ -315,7 +336,9 @@ public class GenericQuest {
 							ConversationPhrases.GREETING_MESSAGES,
 							new AndCondition(conditions),
 							ConversationStates.ATTENDING,
-							message,
+							message+
+							"\ncurrent phase: "+currentPhase.getName()+
+							"\ncurrent phase: "+prevPhase.getName(),
 							new MultipleActions(processStep));
 				}
 				
@@ -342,19 +365,32 @@ public class GenericQuest {
 							null);
 				}
 				
-				private void greetingWithoutItem(SpeakerNPC npc, String message, String state){
-					npc.add(ConversationStates.IDLE,
-							ConversationPhrases.GREETING_MESSAGES,
-							new AndCondition(
-									new GreetingMatchesNameCondition(npc.getName()),
-									new QuestInStateCondition(QUEST_SLOT, 0, state),
-									new NotCondition(new PlayerHasItemWithHimCondition("flask"))),
-							ConversationStates.ATTENDING,
-							message,
-							null);
+				private void greetingWithoutItem(SpeakerNPC npc, String message, QuestStructure.Phase prevPhase){
+					
+					for(int i=0; i<prevPhase.getCollectables().size(); i++){
+						String item = prevPhase.getCollectables().get(i);
+						if(!item.toLowerCase().equals("xp") && !item.toLowerCase().equals("karma")){
+							
+							// Conditions to chat
+							// Right player, correct state, has collectable items
+							final  List<ChatCondition> conditions = new LinkedList<ChatCondition>();
+							conditions.add(new GreetingMatchesNameCondition(npc.getName()));
+							conditions.add(new QuestInStateCondition(QUEST_SLOT, 0, prevPhase.getName()));
+							conditions.add(new NotCondition(new PlayerHasItemWithHimCondition(item.toLowerCase(),Integer.parseInt(prevPhase.getCollectableItemQuantity(item)))));
+							
+							npc.add(ConversationStates.IDLE,
+									ConversationPhrases.GREETING_MESSAGES,
+									new AndCondition(conditions),
+									ConversationStates.ATTENDING,
+									message,
+									null);
+							
+						}
+					}
+					
+					
 				}
 				
-				// TODO Verify if the phaseName+"drawing" works
 				private void showImage(SpeakerNPC npc, QuestStructure.Phase currentPhase, QuestStructure.Phase.Image image){
 					ChatAction showArandulaDrawing = new ExamineChatAction(image.getImage(), image.getTitle(), image.getCaption());
 					ChatAction flagDrawingWasShown = new SetQuestAction(QUEST_SLOT, 1, currentPhase.getName()+"drawing");
@@ -363,11 +399,34 @@ public class GenericQuest {
 							image.getKey(),
 							new AndCondition(
 									new QuestInStateCondition(QUEST_SLOT, 0, currentPhase.getName()),
-									new NotCondition(new QuestInStateCondition(QUEST_SLOT, 1, currentPhase.getName()+"drawing")),
-									new NotCondition(new PlayerHasItemWithHimCondition("arandula"))),
+									new NotCondition(new QuestInStateCondition(QUEST_SLOT, 1, currentPhase.getName()+"drawing"))),
 							ConversationStates.ATTENDING,
 							image.getMessage(),
 							new MultipleActions(showArandulaDrawing, flagDrawingWasShown));
+				}
+				
+//				private void itemToCreate(SpeakerNPC npc, String message, String state){
+//					// TODO if needed
+//				}
+				
+				private void goodbyeNotCompleted(SpeakerNPC npc, String message){
+					npc.add(ConversationStates.ATTENDING,
+			        		ConversationPhrases.GOODBYE_MESSAGES,
+			        		new AndCondition(
+			        				new QuestStartedCondition(QUEST_SLOT),
+			        				new QuestNotCompletedCondition(QUEST_SLOT)),
+			                ConversationStates.IDLE,
+			                message,
+			                null);
+				}
+				
+				private void goodbyeNotStarted(SpeakerNPC npc, String message){
+					npc.add(ConversationStates.ATTENDING,
+			        		ConversationPhrases.GOODBYE_MESSAGES,
+			        		new QuestNotStartedCondition(QUEST_SLOT),
+			                ConversationStates.IDLE,
+			                message,
+			                null);
 				}
 				
 			};

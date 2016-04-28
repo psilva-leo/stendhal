@@ -79,6 +79,18 @@ public class GenericQuestLoader {
 						}
 					}
 					
+					// Get items to create
+					currentNode = (Element) currentPhase.getElementsByTagName("createItem").item(0);
+					if(currentNode != null){
+						questsList.get(i).getPhase(j).setItemToCreate(currentNode.getAttribute("itemToCreate"));
+						questsList.get(i).getPhase(j).setItemToCreateMessage(currentNode.getAttribute("message"));
+						NodeList ingredients = currentNode.getElementsByTagName("item");
+						for(int k=0; k<ingredients.getLength(); k++){
+							Element currentItem = (Element) ingredients.item(k);
+							questsList.get(i).getPhase(j).setIngredients(currentItem.getAttribute("name"), currentItem.getAttribute("quantity"));
+						}
+					}
+					
 					// Get rewards
 					currentNode = (Element) currentPhase.getElementsByTagName("rewards").item(0);
 					if(currentNode != null){
@@ -149,26 +161,27 @@ public class GenericQuestLoader {
 						questsList.get(i).getPhase(j).setGreeting(currentTag.getAttribute("message"));
 					}
 					
-					// Get GreetingWithoutItem message
-					currentTag = (Element) currentPhase.getElementsByTagName("greetingWithoutItem").item(0);
-					if(currentTag != null){
-						questsList.get(i).getPhase(j).setGreetingWithoutItem(currentTag.getAttribute("message"));
-					}
-					
 					// Get Complete Last Phase Talk
 					currentNode = (Element) currentPhase.getElementsByTagName("completeLastPhaseTalk").item(0);
 					if(currentNode != null){
 						questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setDrop(currentNode.getAttribute("drop").equals("true"));
 						questsList.get(i).getPhase(j).setHasCompleteLastPhaseTalk(true);
-						Element greeting = (Element) currentNode.getElementsByTagName("greeting").item(0);
-						if(greeting != null){
-							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setGreeting(greeting.getAttribute("message"));
+						currentTag = (Element) currentNode.getElementsByTagName("greeting").item(0);
+						if(currentTag != null){
+							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setGreeting(currentTag.getAttribute("message"));
 						}
+						
 						replies = currentNode.getElementsByTagName("reply");
 						for(int k=0; k<replies.getLength(); k++){
 							Element currentReply = (Element) replies.item(k);
 							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setReplyMessage(currentReply.getAttribute("key"), currentReply.getAttribute("message"));
 						}
+						
+						currentTag = (Element) currentNode.getElementsByTagName("greetingWithoutItem").item(0);
+						if(currentTag != null){
+							questsList.get(i).getPhase(j).getCompleteLastPhaseTalk().setGreetingWithoutItem(currentTag.getAttribute("message"));
+						}
+						
 					}
 					
 					NodeList images = currentPhase.getElementsByTagName("showImage");
@@ -184,6 +197,17 @@ public class GenericQuestLoader {
 						}
 					}
 					
+					// Get goodbyeNotStarted message
+					currentTag = (Element) currentPhase.getElementsByTagName("infoQuestOnBye").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setGoodbyeNotStarted(currentTag.getAttribute("message"));
+					}
+					
+					// Get goodbyeNotCompleted message
+					currentTag = (Element) currentPhase.getElementsByTagName("remindOnBye").item(0);
+					if(currentTag != null){
+						questsList.get(i).getPhase(j).setGoodbyeNotCompleted(currentTag.getAttribute("message"));
+					}
 					
 				}
 									
