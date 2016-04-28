@@ -101,6 +101,18 @@ public class GenericNPCLoader {
 					npcsList.get(i).setReply(currentReply.getAttribute("keyword"), currentReply.getAttribute("message"));
 				}
 				
+				//Get whether it sells, and what
+				currentElement = (Element) currentNPC.getElementsByTagName("selling").item(0);
+				if(currentElement != null)
+					npcsList.get(i).setSellsWhat(currentElement.getAttribute("service"));
+				
+				//Get whether it heals, and how much - based on player level
+				currentElement = (Element) currentNPC.getElementsByTagName("healing").item(0);
+				if(currentElement != null){
+					npcsList.get(i).setCanHeal(true);
+					npcsList.get(i).setHealMul(Integer.parseInt(currentElement.getAttribute("costmul")));
+					npcsList.get(i).setHealMod(Integer.parseInt(currentElement.getAttribute("costmod")));
+				}
 			}
 			
 		} catch (ParserConfigurationException e) {
