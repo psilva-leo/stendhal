@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- This is the template XML file that will allow you to create easy quests efficiently. Simply follow the instructions given and create the quest in quests.xml-->
+<quests>
+  <quest name="Enter the name of the quest" repeatable="is the quest repeatable or not: either "true" or "false"">
+    <description>Enter description for your quest here</description>
+    <!-- PHASES TUTORIAL
+		You can name phases whatever you want, as long as all phase names are UNIQUE.
+    	You can have as many phases as you want: each phase corresponds to a different part of the quest. for example: 
+    	phase one: talk to the quest giver, and accept the quest to go and fetch some items, 
+    	phase two: bring that item to someone else, get some XP, 
+    	phase three: bring that item and another item to a third person, 
+    	phase four: bring back that item to the first NPC and complete the quest-->
+    <phase name="phase1" npc="Here, enter the name of the NPC who hands out the phase">
+		<collectables>
+        	<!-- In collectables, you define what the player character must go and fetch for the quest giver, for each different item, add a item tag, 
+        	and then add the name of the item and the quantity that needs to be brought to the NPC-->
+        	<item name="insert the name of the item here. If there are spaces in the item name, put them here as well ("leather armor")" quantity="in here, write the quantity of that item. No decimals!"/>
+      	</collectables>
+      	
+      	<!-- Handling keywords
+			Keywords are shown in blue when the NPC says something. In order to make a keyword simply put a hashtag before the word (e.g. #keyword).
+      		Keywords are used as triggers for specific NPC's dialogs. For instance, you have different types of dialogs messages that are triggered by keywords:
+      		<reply key="keyword" message="message" />
+      		<replyWithOffer key="keyword" message="" />
+      		It is important to notice that the trigger word (keyword) do not need to be a keyword in a previous or later dialog at all. You can simply write it there. -->      		
+      
+      <!-- The following tags are used to start the quest, so make sure to put them only in the first phase.
+      	   "replywithOffer" is used while the player did not accepted the quest neither rejected it. So you keep offering the quest. It is a more information tag before accepting or not the quest.
+			"offerQuest" is used to offer the quest to the player if he din't start the quest yet or if he has already finished and the quest is repeatable. -->
+      <offerQuest message="Here, add the message the NPC says to offer you the quest. dont forget to add a #"/>
+      <replyWithOffer key="***" message="Secondary optional message that will be said only when quest hasnt been accepted and key *** is called" />
+      
+      <!-- Here, write messages the NPC will say depending on whether you accept or refuse the quest. No hashtags or keys needed.-->
+      <questAccepted message="Here, add a message full of joy" />
+      <questRefused message="Here, add a message full of disappointment" />
+
+      <!-- The following messages happen when the quest is started but not completed
+      "remindWithoutItem" reminds the player about the quest if he does not have all the items required when the player says hi. Can be used in any phase.
+      "remindQuest" reminds the player about the quest if he says something about the quest (e.g. quest, task, etc) -->
+      <remindWithoutItem message="here add a message that reminds the player of what he needs to do for the quest" />
+      <remindQuest message="here add a message that reminds the player of what he needs to do for the quest" />
+      
+      <!-- Messages when the quest is completed
+      "questCompleted" It is a greeting message (used when the player says hi) for when the player has already completed the quest.
+      "replyCompleted" This message is triggered when the player says a keyword. For instance,if the quest is about fish and the player says fish
+      you may like to add a reply for that. -->
+      <questCompleted message="Here, add what the NPC must say when the quest is completed"/>
+      <replyCompleted key="***" message="Here, add what the NPC says when the quest is complete."/>
+      
+      <!-- DO NOT forget to close the phase tag -->
+    </phase>
+    
+    
+	<!-- Second phase example -->
+	<phase name="phase2" npc="Here, write the name of the NPC you need to take the items to">
+		<!-- Handling rewards
+      	If you want some rewards to be given at any phase during a quest, simply add the rewards tags.
+      	The rewards will be given to the player as soon as he finishes the completeLastPhaseTag (to be explained later)
+      	As for the collectables tags, you have to add an item name (with spaces if needed!) and a quantity. Do not forget
+		that in Stendhal money is treated as item.
+      	To give XP and karma just type xp and karma and the quantity. 
+      	-->
+		<rewards>
+        	<item name="money" quantity="insert quantity here" />
+        	<item name="xp" quantity="insert quantity here" />
+        	<item name="karma" quantity="insert quantity here" />
+        	<item name="whatever else" quantity ="whatever quantity"/>
+      	</rewards>
+      
+		<!-- Complete Last Phase Talk
+      	This tag is a link between the previous phase and the current one. This tag block is used to finish what the player should do in the
+      	last phase. For instance, if in the previous phase he was supposed to get 10 apples and give them to Bob, this phase should have the
+      	Bob NPC and inside the completeLastPhaseTalk shouuld have a greeting for completing the previous phase and chats related to that.
+	      "drop" is referring to whether or not you should lose the previous collectables at this stage of the quest. 
+    	  If they are to be dropped, write "true", if not, write "false"--> 
+      	<completeLastPhaseTalk drop="here, write either "false" or "true"">
+        	<greeting message="write the greeting the NPC will say" />
+		</completeLastPhaseTalk drop="here, write either "false" or "true"">
+      
+      <!-- showImage is used to show a png image
+      If you want to create a sprite refer to https://stendhalgame.org/wiki/StendhalRefactoringGraphics#Items -->
+      <showImage key="whatever" image="whatever.png" title="title of the image" caption="this is the caption"  message="blabla."/>
+
+    </phase>
+  </quest>
+</quests>
