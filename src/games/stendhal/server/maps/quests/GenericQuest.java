@@ -329,9 +329,7 @@ public class GenericQuest {
 							ConversationPhrases.GREETING_MESSAGES,
 							new AndCondition(conditions),
 							ConversationStates.ATTENDING,
-							message+
-							"\ncurrent phase: "+currentPhase.getName()+
-							"\ncurrent phase: "+prevPhase.getName(),
+							message,
 							new MultipleActions(processStep));
 				}
 				
