@@ -33,5 +33,16 @@
   	<reply keyword="colour" message="You can choose your favourite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!"/>
   	<reply keyword="outfit colouring" message="You can choose your favourite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!"/>
   </npc>
-  
+  <npc name="Josephine1" class="youngwomannpc" zone="0_semos_city" x="20" y="20">
+  	<description></description>
+  	<quest name="Cloaks Collector1"
+  		introduce=""
+  		during="Hello! Did you bring any #cloaks with you?"
+  		completed="Hi again, lovely. The cloaks still look great. Thanks!" />
+  </npc>
+  <npc name="Haunchy Meatoch1" class="bbqgrillmasternpc" zone="0_ados_city_n2" x="14" y="30">
+    <description>You see Haunchy Meatoch. He is surrounded by a nice smell of fresh grilled meat.</description>
+	<help message="Unfortunately the steaks aren't ready yet... If you are hungry and can't wait, you could check some offers in the near out like the Blacksheep offers near the fisherhuts in Ados or you can take a ferry to Athor for getting some nice snacks..." />
+	<job message="I am a grillmaster as you can probably see. I love the smell of fresh grilled meat!" />
+  </npc>
 </npcs>

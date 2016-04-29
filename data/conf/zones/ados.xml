@@ -136,6 +136,7 @@
     <configurator class-name="games.stendhal.server.maps.ados.market.OracleNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.CafeSellerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.market.HalfElfNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Signs -->
     <entity x="78" y="99">
@@ -546,6 +547,8 @@
       </implementation>
     </entity>
     
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <point-of-interest x="40" y="48">
       <name>Ados Caves Northwest Entrance</name>
       <title>Ados Caves</title>
@@ -575,6 +578,7 @@
   <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.outside.MagicianHouseGreeterNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
  	  <attributes>
 		  <parameter name="color_method">time</parameter>
@@ -659,6 +663,8 @@ areas.
       <attribute name="class">book_red</attribute>
     </entity>
     
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <!-- flushing toilet -->
     <entity x="18" y="1">
       <implementation class-name="games.stendhal.server.entity.mapstuff.useable.PlaySoundEntity">
@@ -688,6 +694,7 @@ areas.
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
       <parameter name="x">48</parameter>
@@ -799,6 +806,9 @@ West: Semos
   </zone>
   
   <zone name="int_ados_pet_sanctuary" file="interiors/ados/pet_sanctuary.tmx">
+    
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <portal x="16" y="9" ref="door_right">
       <!-- sometime in future we might allow players in to get a pet out but for
            now, we lock the door into the pet area -->
@@ -829,6 +839,7 @@ West: Semos
     
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <entity x="100" y="26">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -949,6 +960,7 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.city.DogNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" /> 
     <configurator class-name="games.stendhal.server.maps.ados.city.HolidayingWomanNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <entity x="83" y="9">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sound.PeriodicAmbientSoundSource">
@@ -1362,6 +1374,7 @@ Please leave my mail at my neighbour's house.
   <zone name="int_ados_bank" file="interiors/ados/bank.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.bank.BankNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <configurator class-name="games.stendhal.server.entity.mapstuff.portal.GateConfigurator">
       <parameter name="x">17</parameter>
@@ -1550,6 +1563,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="15" y="30" ref="0">
@@ -1573,6 +1587,8 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
       <parameter name="blend_method">bleach</parameter>
     </attributes>
     
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <!-- Portals -->
     <portal x="14" y="14" ref="upstairs">
       <destination zone="int_ados_haunted_house" ref="downstairs" />
@@ -1584,6 +1600,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.bakery.ItemsOnTable" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Clock -->
     <entity x="2" y="1">
@@ -1609,6 +1626,7 @@ Please respect the privacy of other customers. Our customer advisor #Rachel will
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.library.WriterNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <entity x="4" y="27">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
@@ -1697,6 +1715,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarmanNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.tavern.ItemsOnTable" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="12" y="17" ref="entrance_left">
@@ -1710,6 +1729,7 @@ You should never dive with a cold or severe allergy because, you may not be able
   </zone>
   
   <zone name="int_ados_zaras_house_0" file="interiors/ados/zaras_house_0.tmx">
+  <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     <!-- Portals -->
     <portal x="8" y="14" ref="entrance_zaras_house">
       <destination zone="0_ados_city_n" ref="zaras_house_entrance" />
@@ -1726,6 +1746,9 @@ You should never dive with a cold or severe allergy because, you may not be able
   </zone>   
   
   <zone name="int_ados_zaras_house_1" file="interiors/ados/zaras_house_1.tmx">
+    
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <!-- Portals -->
     <portal x="11" y="4" ref="down_zaras_house">
       <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
@@ -1759,6 +1782,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.MithrilForgerNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="4" y="14" ref="entrance_goldsmith">
@@ -1769,6 +1793,9 @@ You should never dive with a cold or severe allergy because, you may not be able
   
   <!-- dine will add the temple again when dine's found an appropriate building 
   <zone name="int_ados_temple" file="interiors/ados/temple.tmx">
+    
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <portal x="10" y="23" ref="entrance_left">
       <destination zone="" ref="temple_entrance_left" />
     </portal>
@@ -1791,6 +1818,7 @@ You should never dive with a cold or severe allergy because, you may not be able
   <zone name="int_ados_carolines_house_0" file="interiors/ados/carolines_house.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.market.FishermansDaughterNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="10" y="14" ref="entrance">
@@ -1803,6 +1831,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.felinashouse.CatSellerNPC" />
     <configurator class-name="games.stendhal.server.maps.ados.felinashouse.KittensNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="12" y="23" ref="entrance">
@@ -1817,6 +1846,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">13</parameter>
       <parameter name="y">9</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="12" y="14" ref="in">
@@ -1861,6 +1891,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">6</parameter>
       <parameter name="y">10</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="1" y="15" ref="in">
@@ -1892,6 +1923,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">9</parameter>
       <parameter name="y">2</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="1" y="7" ref="in">
@@ -1915,6 +1947,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">28</parameter>
       <parameter name="y">2</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="17" y="20" ref="in">
@@ -1946,6 +1979,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">2</parameter>
       <parameter name="y">10</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="1" y="15" ref="in">
@@ -1977,6 +2011,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">3</parameter>
       <parameter name="y">13</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="1" y="15" ref="in">
@@ -2008,6 +2043,7 @@ You should never dive with a cold or severe allergy because, you may not be able
       <parameter name="x">13</parameter>
       <parameter name="y">13</parameter>
     </configurator>
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <!-- Portals -->
     <portal x="1" y="15" ref="in">
@@ -2041,6 +2077,7 @@ You should never dive with a cold or severe allergy because, you may not be able
     <!-- if needed again there later -->
     <configurator class-name="games.stendhal.server.maps.semos.townhall.LeaderNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.townhall.CadetsNPCs" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     
     <entity x="35" y="44">
       <implementation class-name="games.stendhal.server.entity.mapstuff.sign.ShopSign">
