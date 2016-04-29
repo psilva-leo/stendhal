@@ -32,7 +32,7 @@ import org.junit.Test;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 
-public class CloakCollectorTest {
+public class CloakCollectorTest1 {
 	@BeforeClass
 	public static void setupclass() throws Exception {
 		QuestHelper.setUpBeforeClass();
@@ -44,12 +44,14 @@ public class CloakCollectorTest {
 
 	@After
 	public void tearDown() throws Exception {
-		SingletonRepository.getNPCList().remove("Josephine1");
+		// TODO change npc name to Josephine1 after merging with Jack's branch
+		// He is creating the npcs
+		SingletonRepository.getNPCList().remove("Josephine");
 	}
 
 	@Test
 	public final void rejectQuest() {
-		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine1"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
 		final SpeakerNPC npc = cc.getNPC();
@@ -71,7 +73,7 @@ public class CloakCollectorTest {
 
 	@Test
 	public final void doQuest() {
-		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine1"));
+		SingletonRepository.getNPCList().add(new SpeakerNPC("Josephine"));
 		final CloakCollector cc = new CloakCollector();
 		cc.addToWorld();
 	

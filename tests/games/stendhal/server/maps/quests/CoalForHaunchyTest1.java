@@ -33,7 +33,7 @@ import utilities.ZonePlayerAndNPCTestImpl;
  * JUnit test for the CoalForHaunchy quest.
  * @author bluelads, M. Fuchs
  */
-public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
+public class CoalForHaunchyTest1 extends ZonePlayerAndNPCTestImpl {
 
 	private String questSlot;
 	private static final String ZONE_NAME = "0_ados_city_n2";
@@ -44,7 +44,7 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 		setupZone(ZONE_NAME);
 	}
 
-	public CoalForHaunchyTest() {
+	public CoalForHaunchyTest1() {
 		super(ZONE_NAME, "Haunchy", "Barbarus");
 	}
 
@@ -64,7 +64,9 @@ public class CoalForHaunchyTest extends ZonePlayerAndNPCTestImpl {
 
 	@Test
 	public void testQuest() {
-		SpeakerNPC haunchy = SingletonRepository.getNPCList().get("Haunchy Meatoch1");
+		// TODO change npc name to Haunchy Meatoch1 after merging with Jack's branch
+		// He is creating the npcs
+		SpeakerNPC haunchy = SingletonRepository.getNPCList().get("Haunchy Meatoch");
 		Engine haunchyEng = haunchy.getEngine();
 
 		SpeakerNPC barbarus = SingletonRepository.getNPCList().get("Barbarus");
