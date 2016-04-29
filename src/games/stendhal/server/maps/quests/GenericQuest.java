@@ -59,9 +59,6 @@ public class GenericQuest {
 					for(int j=0; j<questsStructures.get(i).getPhaseSize(); j++){
 						final SpeakerNPC npc = npcs.get(questsStructures.get(i).getPhase(j).getNPC());
 						
-						System.out.println("----------------------------");
-						System.out.println("Phase: "+questsStructures.get(i).getPhase(j).getName()+" NPC: "+questsStructures.get(i).getPhase(j).getNPC());
-						
 						// Quest Already Completed message
 						if(!questsStructures.get(i).getPhase(j).getQuestCompleted().equals("")){
 							questCompleted(npc, questsStructures.get(i).getPhase(j).getQuestCompleted());
@@ -293,7 +290,6 @@ public class GenericQuest {
 					if(currentPhase.getCompleteLastPhaseTalk().isDrop()){
 						ArrayList<String> collectables = prevPhase.getCollectables();
 						for(int i=0; i<collectables.size(); i++){
-							System.out.println("drop item:"+collectables.get(i).toLowerCase()+" quantity: "+Integer.parseInt(prevPhase.getCollectableItemQuantity(collectables.get(i))));
 							processStep.add(new DropItemAction(collectables.get(i).toLowerCase(), Integer.parseInt(prevPhase.getCollectableItemQuantity(collectables.get(i)))));
 						}
 					}
@@ -302,14 +298,11 @@ public class GenericQuest {
 					for(int i=0; i<currentPhase.getRewards().size(); i++){
 						String item = currentPhase.getRewards().get(i);
 						if(item.toLowerCase().equals("xp")){
-							System.out.println("increase xp by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 							processStep.add(new IncreaseXPAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 						}else{
 							if(item.toLowerCase().equals("karma")){
-								System.out.println("increase karma by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 								processStep.add(new IncreaseKarmaAction(Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 							}else{
-								System.out.println("give item:"+item.toLowerCase()+" by"+Integer.parseInt(currentPhase.getRewardItemQuantity(item)));
 								processStep.add(new EquipItemAction(item.toLowerCase(), Integer.parseInt(currentPhase.getRewardItemQuantity(item))));
 							}
 						}
