@@ -8,16 +8,30 @@
     	introduce="Ssshh! Come here, [name]! I have a #task for you."
         during="*sniff* *sniff* I still feel ill, please hurry with that #favour for me."
         completed="Hi again, [name]! Thanks again, I'm feeling much better now."/>
-    <job message="I have no Job" />
-    <help message="I am the one who needs help." />
-    <reply keyword="key" message="reply with me when the player says #key" />
-    <reply keyword="key2" message="reply2 with me when the player says #key2" />
   </npc>
-  <npc name="Ilisa The Second" zone="0_semos_city" x="30" y="30">
-  	<description>The young boy you see is Tad. He looks ill and his face is pale.</description>
+  <npc name="Ilisa The Second" class="welcomernpc" zone="int_semos_temple" x="9" y="6">
+  	<description>"You see Ilisa. She is young, pretty and her magical aura is enclosing her." </description>
+  	<job message="My special powers help me to heal wounded people. I also sell potions and antidotes." />
+  	<help message="I can #heal you here for a cost, or you can take one of my prepared medicines with you on your travels; just ask for an #offer." />
+  	<selling service = "healing"/>
+	<healing costmul="2" costmod="1"/>
   </npc>
-  <npc name="Ketteh Wehoh The Second" zone="0_semos_city" x="40" y="30">
-  	<description>The young boy you see is Tad. He looks ill and his face is pale.</description>
+  
+  <npc name="Margaret The Second" class="tavernbarmaidnpc" zone="int_semos_tavern_0" x="11" y="4">
+  	<description>"Margaret looks so warm and welcoming that you can't help but want to buy something from her." </description>
+  	<job message="I am the bar maid for this fair tavern. You can #buy both imported and local beers, and fine food." />
+  	<help message="This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink." />
+  	<selling service = "foodAndDrinks"/>
+  </npc>
+  
+  <npc name="Ketteh Wehoh The Second" class="elegantladynpc" zone="int_semos_townhall" x="13" y="38">
+  	<description>"Ketteh Wehoh is the town Decency and Manners Warden who stands in the Townhall of Semos." </description>
+  	<job message="My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway." />
+  	<help message="I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance. I can tell you how to #colour your #outfit, too." />
+  	<reply keyword="quest" message="The only task I have for you is to behave nicely towards others." />
+  	<reply keyword="outfit" message="You can choose your favourite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!"/>
+  	<reply keyword="colour" message="You can choose your favourite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!"/>
+  	<reply keyword="outfit colouring" message="You can choose your favourite colour for your outfit. Choose \'Set Outfit\' after right clicking on yourself and colour your hair and dress as you want!"/>
   </npc>
   
 </npcs>

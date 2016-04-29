@@ -19,6 +19,12 @@ public class NPCStructure {
 	private String introduceQuestMessage = "";
 	private String duringQuestMessage = "";
 	private String completedQuestMessage = "";
+	
+	private int hp = 100;
+	private String sellsWhat = ""; 
+	private boolean canHeal = false;
+	private int healMul = 0;
+	private int healMod = 0;
 
 	public String getName() {
 		return name;
@@ -118,6 +124,38 @@ public class NPCStructure {
 	}
 	public void setCompletedQuestMessage(String postQuestMessage) {
 		this.completedQuestMessage = postQuestMessage;
+	}
+	
+	public int getHP() {
+		return hp;
+	}
+	
+	public void setHP(int hp){
+		this.hp = hp;
+	}
+	public String getSellsWhat() {
+		return sellsWhat;
+	}
+	public void setSellsWhat(String sellsWhat) {
+		this.sellsWhat = sellsWhat;
+	}
+	public boolean isCanHeal() {
+		return canHeal;
+	}
+	public void setCanHeal(boolean canHeal) {
+		this.canHeal = canHeal;
+	}
+	public int getHealMul() {
+		return healMul;
+	}
+	public void setHealMul(int healMul) {
+		this.healMul = healMul;
+	}
+	public int getHealMod() {
+		return healMod;
+	}
+	public void setHealMod(int healMod) {
+		this.healMod = healMod;
 	}
 	
 	

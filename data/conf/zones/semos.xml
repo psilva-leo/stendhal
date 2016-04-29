@@ -2156,6 +2156,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.tavern.market.TradeCenterZoneConfigurator" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1" condition="!stendhal.christmas">
       <implementation
@@ -2294,6 +2295,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <portal x="4" y="4" ref="downstairs">
       <destination zone="int_semos_tavern_0" ref="upstairs" />
@@ -2335,6 +2337,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
   <zone name="int_semos_temple" file="interiors/semos/temple.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.temple.HealerNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1">
       <implementation
@@ -2393,6 +2396,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
     <portal x="15" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="blacksmith_entrance" />
     </portal>
@@ -2535,6 +2539,7 @@ Ahh nice, you can already smell it. And in small letters below is added: "New! L
       class-name="games.stendhal.server.maps.semos.library.HistorianGeographerNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.library.LibrarianNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <portal x="8" y="30" ref="entrance_left">
       <destination zone="0_semos_city" ref="library_entrance_left" />
@@ -2635,6 +2640,7 @@ Holy mackerel! These chips are tasty.
     </attributes>
     <configurator
       class-name="games.stendhal.server.maps.semos.storage.HousewifeNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <portal x="9" y="14" ref="entrance">
       <destination zone="0_semos_city" ref="storage_entrance" />
@@ -2651,7 +2657,9 @@ Holy mackerel! These chips are tasty.
       <parameter name="color">#413263</parameter>
       <parameter name="blend_method">bleach</parameter>
     </attributes>
-
+	
+	<configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
+    
     <portal x="26" y="10" ref="upstairs">
       <destination zone="int_semos_storage_0" ref="downstairs" />
     </portal>
@@ -2666,6 +2674,7 @@ Holy mackerel! These chips are tasty.
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
     <configurator
       class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <portal x="9" y="30" ref="entrance">
       <destination zone="0_semos_city" ref="bank_entrance" />
@@ -2993,6 +3002,7 @@ Holy mackerel! These chips are tasty.
     <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
     <configurator
       class-name="games.stendhal.server.maps.semos.townhall.DecencyAndMannersWardenNPC" />
+    <configurator class-name="games.stendhal.server.entity.npc.GenericNPC" />
 
     <entity x="1" y="1">
       <implementation
