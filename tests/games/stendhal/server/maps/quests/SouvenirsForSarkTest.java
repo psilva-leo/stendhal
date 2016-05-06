@@ -25,11 +25,11 @@ import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.npc.GenericNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.kalavan.castle.OffworldTouristNPC;
-import games.stendhal.server.maps.semos.temple.BooksellerNPC; 
+
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
@@ -64,13 +64,14 @@ public class SouvenirsForSarkTest extends ZonePlayerAndNPCTestImpl {
 	@Before
 	public void setUp() {
 		StendhalRPZone kalavanCastleZone = new StendhalRPZone(SARK_ZONE_NAME);
-		new OffworldTouristNPC().configureZone(kalavanCastleZone, null);
+		new GenericNPC().configureZone(kalavanCastleZone, null);
 		
 		StendhalRPZone booksellerZone = new StendhalRPZone(BOOKSELLER_ZONE_NAME);
-		new BooksellerNPC().configureZone(booksellerZone, null);
+		new GenericNPC().configureZone(booksellerZone, null);
+		//new BooksellerNPC().configureZone(booksellerZone, null);
 
 		// For Quick Quest Challenge, change this to whatever code loads the quest through your new mechanism
-		quest = new SouvenirsForSark();
+		quest = new GenericQuest().getQuests().get(new GenericQuest().getQuests().size()-1);
 		quest.addToWorld();
 		
 		questSlot = quest.getSlotName();

@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class GenericNPC implements ZoneConfigurator{
 
+	ArrayList<SpeakerNPC> npclist = new ArrayList<SpeakerNPC>();
 	@Override
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
@@ -35,6 +36,7 @@ public class GenericNPC implements ZoneConfigurator{
 		for(int ii=0; ii<npcs.size(); ii++){
 		final int i = ii;
 		final SpeakerNPC npc = new SpeakerNPC(npcs.get(i).getName()){
+			
 			
 			@Override
 			protected void createDialog() {
@@ -97,6 +99,7 @@ public class GenericNPC implements ZoneConfigurator{
 			};
 			
 		};
+		npclist.add(npc);
 		
 		// Set quest
 		if(npcs.get(i).hasQuest()){
@@ -121,5 +124,9 @@ public class GenericNPC implements ZoneConfigurator{
 
         zone.add(npc);
 		}
+	}
+	
+	public ArrayList<SpeakerNPC> getNPCs(){
+		return npclist;
 	}
 }

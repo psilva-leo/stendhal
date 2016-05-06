@@ -149,4 +149,8 @@
 			<questReminder key="stone coal" message= "Sometime you could do me a #favour ..."/>
 		</phase>
 	</quest>
+	<quest name="Souvenirs For Sark">
+	<description>You see a small alien-like creature.  It is carrying a strange flat box, which it looks at often.</description>
+	<phase name=""
+	</quest>
 </quests>
