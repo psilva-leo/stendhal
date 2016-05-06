@@ -29,7 +29,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.kalavan.castle.OffworldTouristNPC;
-import games.stendhal.server.maps.semos.temple.BooksellerNPC;
+import games.stendhal.server.maps.semos.temple.BooksellerNPC; 
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
